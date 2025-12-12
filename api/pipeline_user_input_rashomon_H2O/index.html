@@ -1,0 +1,482 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_user_input_rashomon_H2O/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>pipeline user input rashomon H2O - ARSA Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#buildrashomonh2o" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ARSA Documentation" class="md-header__button md-logo" aria-label="ARSA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ARSA Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              pipeline user input rashomon H2O
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ARSA Documentation" class="md-nav__button md-logo" aria-label="ARSA Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ARSA Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a href="../">back</a></p>
+<h1 id="buildrashomonh2o">BuildRashomonH2O</h1>
+<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+class rashomon_analysis.pipelines.pipelines_user_input.<strong>BuildRashomonH2O</strong>(models_directory, test_data, target_column, df_name, base_metric, delta, feature_imp_needed, converter_results_directory)
+</div>
+<p></br>
+This is a subclass of a <code>Builder</code> abstract class, which provides pipeline for creating and exploring the Rashomon Set from user-provided models from H2O framework.
+</br>
+</br>
+Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline.ipynb</code>.
+</br>
+</br>
+</br></p>
+<div style="background-color: lightgray; padding: 3px; border-radius: 0px;">
+<strong>Parameters</strong>
+</div>
+<p></br>
+    <strong>models_directory</strong> : Path </br>
+     &emsp;  Path to a folder where all models saved from H2O output are stored.
+    </br>
+    <br>
+    <strong>test_data</strong> : h2o.H2OFrame </br>
+    &emsp; Test dataset for evaluation, must be converted to <code>h20.H2OFrame</code> object. <br>
+    &emsp; Note 1: <em> It is crucial to stratify your data while performing the train test split, so that there are no classes in test data that were not present in the train set. </em> <br>
+    &emsp; Note 2 (for binary classification task): <em> It is crucial to convert binary target column labels into 0 for negative class and 1 for positive class. Otherwise, some evaluation metrics may not be calculated correctly. </em>
+    </br>
+    <br>
+    <strong>target_column</strong> : str </br>
+    &emsp; Name of the target column for the classification task. Used to determine whether the task type is binary or multiclass.
+    </br>
+    <br>
+    <strong>df_name</strong> : str </br>
+    &emsp; Name of the dataset used for saving the data generated by <code>H2O_Converter</code> output.
+    </br>
+    <br>
+    <strong>base_metric</strong> : str </br>
+    &emsp; Evaluation metric to be used as a primary value for sorting model performances and constructing the Rashomon Set.
+    </br>
+    <br>
+    <strong>delta</strong> : float </br>
+     &emsp; Delta parameter for probabilistic ambiguity and discrepancy (used only for binary task type). <br>
+     &emsp; If not specified the default value of 0.1 will be used.
+    </br>
+    <br>
+    <strong>feature_imp_needed</strong> : bool </br>
+     &emsp; Boolean value specifying whether feature importance computation is required. <br>
+     &emsp; Defaults to True; set to False to skip feature importance computation for faster execution.
+     </br>
+     <br>
+    <strong>converter_results_directory</strong> : Path </br>
+     &emsp; Path to the directory where the converter outputs will be saved. <br>
+     &emsp; If <code>None</code>, a default directory <code>converter_results/df_name_timestamp</code> will be automatically created in the same directory as <code>models_directory</code>, where timestamp corresponds to the creation time of the converted outputs. 
+     </br>
+</br></p>
+<div style="background-color: lightgray; padding: 3px; border-radius: 0px;">
+    <strong>BuildRashomonH2O Pipeline – Key Steps</strong>
+</div>
+<p><br></p>
+<ol>
+    <li><strong>Initialization (<code>__init__</code>)</strong> – Convert H2O models to format for Rashomon Set analysis.</li>
+    <li><strong>Preview Rashomon (<code>preview_rashomon()</code>)</strong> – Visualize leaderboard and Rashomon Set sizes to guide epsilon selection.</li>
+    <li><strong>Set Epsilon (<code>set_epsilon()</code>)</strong> – Set epsilon parameter value to be used when creating Rashomon Set.</li>
+    <li><strong>Build Pipeline (<code>build()</code>)</strong> – Create RashomonSet, Visualizer objects and launch the Streamlit dashboard.</li>
+    <li><strong>Interactive Analysis</strong> – Explore plots via Visualizer object or the dashboard.</li>
+    <li><strong>Close Dashboard (<code>dashboard_close()</code>)</strong> – Stop Streamlit processes.</li>
+</ol>
+<p><br></p>
+<div style="background-color: lightgray; padding: 3px; border-radius: 0px;">
+<strong>Pipeline Initialization</strong>
+</div>
+<p></br>
+&emsp; During initialization, the pipeline converts the user's input models into the internal format specified by <code>H2O_Converter</code> class object.  <br>
+&emsp; All processed results are stored in the specified directory or in a default directory created based on the dataset name and timestamp (see converter_results_directory parameter).  <br>
+<br></p>
+<div style="background-color: lightgray; padding: 3px; border-radius: 0px;">
+<strong>Methods</strong>
+</div>
+<p></br></p>
+<div style="color: #60824f; font-size: 18px;">
+    <strong>preview_rashomon()</strong>
+</div>
+<p>&emsp; Method illustrating the leaderboard and the plot with all possible epsilon values and the Rashomon Set sizes for different epsilon values. <br>
+&emsp; Should be called to guide the selection of an appropriate epsilon threshold.
+</br>
+</br></p>
+<div style="color: #60824f; font-size: 18px;">
+    <strong>visualize_rashomon_set_volume()</strong>
+</div>
+<p>&emsp; Method for visualising Rashomon set size depending on different epsilon values.
+</br>
+</br></p>
+<div style="color: #60824f; font-size: 18px;">
+    <strong>set_epsilon(<code>epsilon</code>)</strong>
+</div>
+<p>&emsp; Sets the epsilon parameter value to be used when constructing the Rashomon Set object.<br>
+&emsp; <strong> Epsilon value must be set before calling build() method. </strong>
+</br>
+</br>
+&emsp; <strong>Parameters :</strong> </br>
+&emsp; <code>epsilon</code> : float <br>
+<br></p>
+<div style="color: #60824f; font-size: 18px;">
+    <strong>build()</strong>
+</div>
+<p>&emsp;Builds the Rashomon Set pipeline from H2O models. <br>
+&emsp; Creates Rashomon Set object and Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
+</br>
+</br>
+&emsp; This method performs the following steps:</p>
+<ul>
+<li>Validates that the epsilon threshold has been set using <code>set_epsilon()</code> method.</li><br>
+<li>Creates the <code>RashomonSet</code> object based on the leaderboard, predictions, probability predictions, feature importances, base metric, and epsilon threshold. <br>
+All inputs required to build the Rashomon Set object are extracted from the user's data, which is processed and converted during the pipeline initialization.</li><br>
+<li>Initializes the <code>Visualizer</code> object for interactive analysis of the Rashomon Set. <br>
+Individual plots can later be generated directly from the <code>Visualizer</code> object.</li><br>
+<li>Generates plots for analysis depending on the task type (binary or multiclass), and stores them temporarily with their descriptions for the Streamlit dashboard.</li><br>
+<li>Closes any previous Streamlit processes to avoid conflicts.</li><br>
+<li>Launches the Streamlit dashboard in a subprocess on the local machine (localhost), allowing interactive exploration of the Rashomon Set properties without blocking the main workflow.</li>
+
+</ul>
+<p></br>
+&emsp; <strong>Returns :</strong> </br>
+&emsp; <code>rashomon_set</code> : RashomonSet
+</br>
+&emsp; <code>visualizer</code> : Visualizer
+</br>
+</br></p>
+<div style="color: #60824f; font-size: 18px;">
+    <strong>dashboard_close()</strong>
+</div>
+<p>&emsp; Method for stopping all Streamlit processes and closing the dashboard.<br>
+&emsp; Note: <em>Always call this method after finishing the analysis to ensure the dashboard is properly closed.</em></p>
+<p><br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
