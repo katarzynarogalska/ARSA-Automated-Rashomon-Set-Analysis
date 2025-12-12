@@ -38,4 +38,4 @@ builder.dashboard_close()
 ```
 
 ## Documentation
-For detailed package dokumentation visit [documentation page](api/index.md) 
+For detailed package dokumentation visit [documentation page](https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/) 
