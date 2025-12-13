@@ -35,7 +35,7 @@ All methods are decorated as <code>@abstractmethod</code> and must be implemente
 <div style="color: #60824f; font-size: 18px;">
     <strong>build()</strong>
 </div>
-&emsp; Primary method of all pipelines. Creates all the necessary objects from given arguments, returns them and launches the Streamlit dashboard in the background.
+&emsp; Primary method of all pipelines. Creates all the necessary objects from given arguments, returns them and launches the Streamlit dashboard in the background if launch_dashboard parametr is set to True.
 </br>
 </br>
 

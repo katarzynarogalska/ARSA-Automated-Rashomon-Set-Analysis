@@ -145,10 +145,13 @@ class BuildRashomonH2O(Builder):
             raise ValueError("Epsilon parameter cannot be less than 0. Please provide a valid epsilon value.")
 
 
-    def build(self):
+    def build(self, launch_dashboard: bool = True):
         '''
             Builds the Rashomon Set pipeline from H2O models.
             Creates Rashomon Set object and Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
+
+            Parameters: 
+                launch_dashboard : boolean value indicating whether to launch the Streamlit dashboard after building the Rashomon Set and Visualizer. Default is True.
             
             Returns:
                     RashomonSet : Rashomon Set class object computed during pipeline
@@ -163,57 +166,61 @@ class BuildRashomonH2O(Builder):
 
         rashomon_set = RashomonSet(self.leaderboard, self.predictions, self.proba_predictions, self.feature_importances, self.base_metric, self.epsilon)
         visualizer = Visualizer(rashomon_set, self.y_true)
-        plots ={}
-        descriptions ={}
 
-        if rashomon_set.task_type == "binary":
-            method_names = visualizer.binary_methods
-            ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
-            plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
-            proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
-            plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
-            proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
-            plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
+        if launch_dashboard:
+            plots ={}
+            descriptions ={}
 
-        elif rashomon_set.task_type =="multiclass":
-            method_names = visualizer.multiclass_methods
+            if rashomon_set.task_type == "binary":
+                method_names = visualizer.binary_methods
+                ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
+                plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
+                proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
+                plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
+                proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
+                plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
 
-        random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
-        for method in method_names:
-            func = getattr(visualizer, method)
-            sig = inspect.signature(func)
-            params = sig.parameters
+            elif rashomon_set.task_type =="multiclass":
+                method_names = visualizer.multiclass_methods
 
-            #if the method needs parameters (random sample index):
-            if len(params)>0:
-                # random index 
-                if "sample_index" in params:
-                    plot, descr = func(sample_index=random_idx)
-                else: 
-                    raise ValueError(f"Method {method} needs unsupported parameters")
-            else: plot, descr = func()
-            plots[method] = plot
-            descriptions[method] = descr
-        
-        logging.info("Rashomon Set and Visualizer built successfully.")
-        temp_file = TMP_DIR / "temp_plots.pkl"
-        with open(temp_file, "wb") as f:
-            pickle.dump((plots, descriptions), f)
+            random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
+            for method in method_names:
+                func = getattr(visualizer, method)
+                sig = inspect.signature(func)
+                params = sig.parameters
 
-        logging.info('Closing all previous Streamlit processes...')
-        self.dashboard_close() # close all processes before starting a new one
-        logging.info('Launching Streamlit dashboard...')
-        if rashomon_set.task_type =="binary":           
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(RASHOMON_BINARY_APP_PATH), "--", str(temp_file)
-            ])
-        elif rashomon_set.task_type=="multiclass":
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(RASHOMON_MULTICLASS_APP_PATH), "--", str(temp_file)
-            ])
+                #if the method needs parameters (random sample index):
+                if len(params)>0:
+                    # random index 
+                    if "sample_index" in params:
+                        plot, descr = func(sample_index=random_idx)
+                    else: 
+                        raise ValueError(f"Method {method} needs unsupported parameters")
+                else: plot, descr = func()
+                plots[method] = plot
+                descriptions[method] = descr
+            
+            logging.info("Rashomon Set and Visualizer built successfully.")
+            temp_file = TMP_DIR / "temp_plots.pkl"
+            with open(temp_file, "wb") as f:
+                pickle.dump((plots, descriptions), f)
 
-        logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
-        logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+            logging.info('Closing all previous Streamlit processes...')
+            self.dashboard_close() # close all processes before starting a new one
+            logging.info('Launching Streamlit dashboard...')
+            if rashomon_set.task_type =="binary":           
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(RASHOMON_BINARY_APP_PATH), "--", str(temp_file)
+                ])
+            elif rashomon_set.task_type=="multiclass":
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(RASHOMON_MULTICLASS_APP_PATH), "--", str(temp_file)
+                ])
+
+            logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
+            logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+        else: 
+            logging.info("Rashomon Set and Visualizer built successfully. Dashboard launch skipped as per user request.")
 
         return rashomon_set, visualizer
     
@@ -350,10 +357,13 @@ class BuildRashomonIntersectionH2O(Builder):
             raise ValueError("Epsilon parameter cannot be less than 0. Please provide a valid epsilon value.")
 
 
-    def build(self):
+    def build(self, launch_dashboard: bool = True):
         '''
             Builds the Rashomon Intersection pipeline from H2O models.
             Creates Rashomon Intersection object and Intersection Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
+
+            Parameters:
+                launch_dashboard : boolean value indicating whether to launch the Streamlit dashboard after building the Rashomon Intersection and Visualizer. Default is True.
                 
             Returns:
                     RashomonSetIntersection : Rashomon Set Intersection class object computed during pipeline
@@ -370,58 +380,62 @@ class BuildRashomonIntersectionH2O(Builder):
                                                feature_importances=self.feature_importances, metrics=self.metrics, epsilon=self.epsilon, 
                                                custom_weights=self.custom_weights, weighted_sum_method=self.weighted_sum_method)
         visualizer = IntersectionVisualizer(rashomon_set, self.y_true)
-        plots ={}
-        descriptions ={}
-
-        if rashomon_set.task_type == "binary":
-            method_names = visualizer.binary_methods
-            ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
-            plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
-            proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
-            plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
-            proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
-            plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
-
-        elif rashomon_set.task_type =="multiclass":
-            method_names = visualizer.multiclass_methods
-
-        random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
-        for method in method_names:
-            func = getattr(visualizer, method)
-            sig = inspect.signature(func)
-            params = sig.parameters
-
-            #if the method needs parameters (random sample index):
-            if len(params)>0:
-                # random index 
-                if "sample_index" in params:
-                    plot, descr = func(sample_index=random_idx)
-                else: 
-                    raise ValueError(f"Method {method} needs unsupported parameters")
-            else: plot, descr = func()
-            plots[method] = plot
-            descriptions[method] = descr
         
-        logging.info("Rashomon Intersection Set and Visualizer built successfully.")
-        temp_file = TMP_DIR / "temp_plots.pkl"
-        with open(temp_file, "wb") as f:
-            pickle.dump((plots, descriptions), f)
+        if launch_dashboard:
+            plots ={}
+            descriptions ={}
 
-        logging.info('Closing all previous Streamlit processes...')
-        self.dashboard_close() # close all processes before starting a new one
-        logging.info('Launching Streamlit dashboard...')
+            if rashomon_set.task_type == "binary":
+                method_names = visualizer.binary_methods
+                ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
+                plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
+                proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
+                plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
+                proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
+                plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
 
-        if rashomon_set.task_type =="binary":           
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(INTERSECTION_BINARY_APP_PATH), "--", str(temp_file)
-            ])
-        elif rashomon_set.task_type=="multiclass":
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(INTERSECTION_MULTICLASS_APP_PATH), "--", str(temp_file)
-            ])
+            elif rashomon_set.task_type =="multiclass":
+                method_names = visualizer.multiclass_methods
 
-        logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
-        logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+            random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
+            for method in method_names:
+                func = getattr(visualizer, method)
+                sig = inspect.signature(func)
+                params = sig.parameters
+
+                #if the method needs parameters (random sample index):
+                if len(params)>0:
+                    # random index 
+                    if "sample_index" in params:
+                        plot, descr = func(sample_index=random_idx)
+                    else: 
+                        raise ValueError(f"Method {method} needs unsupported parameters")
+                else: plot, descr = func()
+                plots[method] = plot
+                descriptions[method] = descr
+            
+            logging.info("Rashomon Intersection Set and Visualizer built successfully.")
+            temp_file = TMP_DIR / "temp_plots.pkl"
+            with open(temp_file, "wb") as f:
+                pickle.dump((plots, descriptions), f)
+
+            logging.info('Closing all previous Streamlit processes...')
+            self.dashboard_close() # close all processes before starting a new one
+            logging.info('Launching Streamlit dashboard...')
+
+            if rashomon_set.task_type =="binary":           
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(INTERSECTION_BINARY_APP_PATH), "--", str(temp_file)
+                ])
+            elif rashomon_set.task_type=="multiclass":
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(INTERSECTION_MULTICLASS_APP_PATH), "--", str(temp_file)
+                ])
+
+            logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
+            logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+        else:
+            logging.info("Rashomon Intersection and Visualizer built successfully. Dashboard launch skipped as per user request.")
 
         return rashomon_set, visualizer
     
@@ -542,10 +556,13 @@ class BuildRashomonAutogluon(Builder):
             raise ValueError("Epsilon parameter cannot be less than 0. Please provide a valid epsilon value.")
 
 
-    def build(self):
+    def build(self, launch_dashboard: bool = True):
         '''
             Builds the Rashomon Set pipeline from AutoGluon input.
             Creates Rashomon Set object and Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
+
+            Parameters:
+                launch_dashboard : boolean value indicating whether to launch the Streamlit dashboard after building the Rashomon Set and Visualizer. Default is True.
                 
             Returns:
                     RashomonSet : Rashomon Set class object computed during pipeline
@@ -560,58 +577,63 @@ class BuildRashomonAutogluon(Builder):
         
         rashomon_set = RashomonSet(self.leaderboard, self.predictions, self.proba_predictions, self.feature_importances, self.base_metric, self.epsilon)
         visualizer = Visualizer(rashomon_set, self.y_true)
-        plots ={}
-        descriptions ={}
-
-        if rashomon_set.task_type == "binary":
-            method_names = visualizer.binary_methods
-            ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
-            plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
-            proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
-            plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
-            proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
-            plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
-
-        elif rashomon_set.task_type =="multiclass":
-            method_names = visualizer.multiclass_methods
-
-        random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
-        for method in method_names:
-                func = getattr(visualizer, method)
-                sig = inspect.signature(func)
-                params = sig.parameters
-
-                #if the method needs parameters (random sample index):
-                if len(params)>0:
-                    # random index 
-                    if "sample_index" in params:
-                        plot, descr = func(sample_index=random_idx)
-                    else: 
-                        raise ValueError(f"Method {method} needs unsupported parameters")
-                else: plot, descr = func()
-                plots[method] = plot
-                descriptions[method] = descr
         
-        logging.info("Rashomon Set and Visualizer built successfully.")
-        temp_file = TMP_DIR / "temp_plots.pkl"
-        with open(temp_file, "wb") as f:
-            pickle.dump((plots, descriptions), f)
+        if launch_dashboard:
+            plots ={}
+            descriptions ={}
 
-        logging.info('Closing all previous Streamlit processes...')
-        self.dashboard_close() # close all processes before starting a new one
-        logging.info('Launching Streamlit dashboard...')
+            if rashomon_set.task_type == "binary":
+                method_names = visualizer.binary_methods
+                ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
+                plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
+                proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
+                plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
+                proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
+                plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
 
-        if rashomon_set.task_type =="binary":           
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(RASHOMON_BINARY_APP_PATH), "--", str(temp_file)
-            ])
-        elif rashomon_set.task_type=="multiclass":
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(RASHOMON_MULTICLASS_APP_PATH), "--", str(temp_file)
-            ])
+            elif rashomon_set.task_type =="multiclass":
+                method_names = visualizer.multiclass_methods
 
-        logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
-        logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+            random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
+            for method in method_names:
+                    func = getattr(visualizer, method)
+                    sig = inspect.signature(func)
+                    params = sig.parameters
+
+                    #if the method needs parameters (random sample index):
+                    if len(params)>0:
+                        # random index 
+                        if "sample_index" in params:
+                            plot, descr = func(sample_index=random_idx)
+                        else: 
+                            raise ValueError(f"Method {method} needs unsupported parameters")
+                    else: plot, descr = func()
+                    plots[method] = plot
+                    descriptions[method] = descr
+            
+            logging.info("Rashomon Set and Visualizer built successfully.")
+            temp_file = TMP_DIR / "temp_plots.pkl"
+            with open(temp_file, "wb") as f:
+                pickle.dump((plots, descriptions), f)
+
+            logging.info('Closing all previous Streamlit processes...')
+            self.dashboard_close() # close all processes before starting a new one
+            logging.info('Launching Streamlit dashboard...')
+
+            if rashomon_set.task_type =="binary":           
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(RASHOMON_BINARY_APP_PATH), "--", str(temp_file)
+                ])
+            elif rashomon_set.task_type=="multiclass":
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(RASHOMON_MULTICLASS_APP_PATH), "--", str(temp_file)
+                ])
+
+            logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
+            logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+        
+        else:
+            logging.info("Rashomon Set and Visualizer built successfully. Dashboard launch skipped as per user request.")
 
         return rashomon_set, visualizer
 
@@ -745,10 +767,13 @@ class BuildRashomonIntersectionAutogluon(Builder):
             raise ValueError("Epsilon parameter cannot be less than 0. Please provide a valid epsilon value.")
 
 
-    def build(self):
+    def build(self, launch_dashboard : bool = True):
         '''
             Builds the Rashomon Intersection pipeline from AutoGluon input.
             Creates Rashomon Intersection object and Intersection Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
+
+            Parameters:
+                launch_dashboard : boolean value indicating whether to launch the Streamlit dashboard after building the Rashomon
                     
             Returns:
                     RashomonSetIntersection : Rashomon Set Intersection class object computed during pipeline
@@ -765,58 +790,62 @@ class BuildRashomonIntersectionAutogluon(Builder):
                                                feature_importances=self.feature_importances, metrics=self.metrics, epsilon=self.epsilon, 
                                                custom_weights=self.custom_weights, weighted_sum_method=self.weighted_sum_method)
         visualizer = IntersectionVisualizer(rashomon_set, self.y_true)
-        plots ={}
-        descriptions ={}
 
-        if rashomon_set.task_type == "binary":
-            method_names = visualizer.binary_methods
-            ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
-            plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
-            proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
-            plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
-            proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
-            plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
+        if launch_dashboard:
+            plots ={}
+            descriptions ={}
 
-        elif rashomon_set.task_type =="multiclass":
-            method_names = visualizer.multiclass_methods
+            if rashomon_set.task_type == "binary":
+                method_names = visualizer.binary_methods
+                ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr = visualizer.lolipop_ambiguity_discrepancy_proba_version(self.delta)
+                plots["lolipop_ambiguity_discrepancy_proba_version"], descriptions["lolipop_ambiguity_discrepancy_proba_version"] = ambiguity_discrepancy_proba_plot, ambiguity_discrepancy_proba_descr
+                proba_ambiguity_plot, proba_ambiguity_descr = visualizer.proba_ambiguity_vs_epsilon(self.delta)
+                plots["proba_ambiguity_vs_epsilon"], descriptions["proba_ambiguity_vs_epsilon"] = proba_ambiguity_plot, proba_ambiguity_descr
+                proba_discrepancy_plot, proba_discrepancy_descr = visualizer.proba_discrepancy_vs_epsilon(self.delta)
+                plots["proba_discrepancy_vs_epsilon"], descriptions["proba_discrepancy_vs_epsilon"] = proba_discrepancy_plot, proba_discrepancy_descr
 
-        random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
-        for method in method_names:
-                func = getattr(visualizer, method)
-                sig = inspect.signature(func)
-                params = sig.parameters
+            elif rashomon_set.task_type =="multiclass":
+                method_names = visualizer.multiclass_methods
 
-                #if the method needs parameters (random sample index):
-                if len(params)>0:
-                    # random index 
-                    if "sample_index" in params:
-                        plot, descr = func(sample_index=random_idx)
-                    else: 
-                        raise ValueError(f"Method {method} needs unsupported parameters")
-                else: plot, descr = func()
-                plots[method] = plot
-                descriptions[method] = descr
-        
-        logging.info("Rashomon Intersection Set and Visualizer built successfully.")
-        temp_file = TMP_DIR / "temp_plots.pkl"
-        with open(temp_file, "wb") as f:
-            pickle.dump((plots, descriptions), f)
+            random_idx = random.choice(self.y_true.index.tolist()) #choose random sample for analysis
+            for method in method_names:
+                    func = getattr(visualizer, method)
+                    sig = inspect.signature(func)
+                    params = sig.parameters
 
-        logging.info('Closing all previous Streamlit processes...')
-        self.dashboard_close()
-        logging.info('Launching Streamlit dashboard...')
+                    #if the method needs parameters (random sample index):
+                    if len(params)>0:
+                        # random index 
+                        if "sample_index" in params:
+                            plot, descr = func(sample_index=random_idx)
+                        else: 
+                            raise ValueError(f"Method {method} needs unsupported parameters")
+                    else: plot, descr = func()
+                    plots[method] = plot
+                    descriptions[method] = descr
+            
+            logging.info("Rashomon Intersection Set and Visualizer built successfully.")
+            temp_file = TMP_DIR / "temp_plots.pkl"
+            with open(temp_file, "wb") as f:
+                pickle.dump((plots, descriptions), f)
 
-        if rashomon_set.task_type =="binary":           
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(INTERSECTION_BINARY_APP_PATH), "--", str(temp_file)
-            ])
-        elif rashomon_set.task_type=="multiclass":
-            proc = subprocess.Popen([
-                sys.executable, "-m", "streamlit", "run", str(INTERSECTION_MULTICLASS_APP_PATH), "--", str(temp_file)
-            ])
+            logging.info('Closing all previous Streamlit processes...')
+            self.dashboard_close()
+            logging.info('Launching Streamlit dashboard...')
 
-        logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
-        logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+            if rashomon_set.task_type =="binary":           
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(INTERSECTION_BINARY_APP_PATH), "--", str(temp_file)
+                ])
+            elif rashomon_set.task_type=="multiclass":
+                proc = subprocess.Popen([
+                    sys.executable, "-m", "streamlit", "run", str(INTERSECTION_MULTICLASS_APP_PATH), "--", str(temp_file)
+                ])
+
+            logging.info(f"Streamlit dashboard launched (PID={proc.pid})")
+            logging.info("You can continue working with your code - to close Streamlit process call dashboard_close() method.")
+        else:
+            logging.info("Rashomon Set and Visualizer built successfully. Dashboard launch skipped as per user request.")
 
         return rashomon_set, visualizer
 

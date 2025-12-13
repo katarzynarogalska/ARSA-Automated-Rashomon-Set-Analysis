@@ -123,7 +123,7 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 <br>
 
 <div style="color: #60824f; font-size: 18px;">
-    <strong>build()</strong>
+    <strong>build(<code>launch_dashboard</code>)</strong>
 </div>
 &emsp;Builds the Rashomon Intersection pipeline from H2O models. <br>
 &emsp; Creates Rashomon Intersection object and Intersection Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
@@ -136,9 +136,8 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 All inputs required to build the Rashomon Intersection object are extracted from the user's data, which is processed and converted during the pipeline initialization.</li><br>
 <li>Initializes the <code>IntersectionVisualizer</code> object for interactive analysis of the Rashomon Intersection. <br>
 Individual plots can later be generated directly from the <code>IntersectionVisualizer</code> object.</li><br>
-<li>Generates plots for analysis depending on the task type (binary or multiclass), and stores them temporarily with their descriptions for the Streamlit dashboard.</li><br>
-<li>Closes any previous Streamlit processes to avoid conflicts.</li><br>
-<li>Launches the Streamlit dashboard in a subprocess on the local machine (localhost), allowing interactive exploration of the Rashomon Intersection properties without blocking the main workflow.</li>
+<li>If <code>launch_dashboard</code> is set to True (default) it generates plots for analysis depending on the task type (binary or multiclass), and stores them temporarily with their descriptions for the Streamlit dashboard. It closes any previous Streamlit processes to avoid conflicts.</li><br>
+<li>If <code>launch_dashboard</code> is set to True (default) it launches the Streamlit dashboard in a subprocess on the local machine (localhost), allowing interactive exploration of the Rashomon Intersection properties without blocking the main workflow.</li>
 
 </ul>
 </br>
