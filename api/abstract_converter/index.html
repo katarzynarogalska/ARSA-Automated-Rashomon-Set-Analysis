@@ -286,7 +286,7 @@
 
 <p><a href="../">back</a></p>
 <h1 id="converter-abstract-class">Converter - abstract class</h1>
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px; ">
 class rashomon_analysis.converter.<strong>Converter</strong>
 </div>
 <p><br>
@@ -301,7 +301,7 @@ This class is an abstract class asserting all converter classes have the same se
 All methods are decorated as <code>@abstractmethod</code> and must be implemented in every child class.
 <br>
 <br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_predictions_dict()</strong>
 </div>
 <p>Method for extracting trained models and their class predictions from a used framework. Returns the results in a dictionary format with model names as keys and their class prediction vector (pandas.Series) as values.
@@ -311,7 +311,7 @@ All methods are decorated as <code>@abstractmethod</code> and must be implemente
 <code>predictions_dict</code> : dict[str, pd.Series]
 <br>
 <br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_proba_predictions_dict()</strong>
 </div>
 <p>Method for extracting trained models and their probability predictions from a used framework. Returns the results in a dictionary format with model names as keys and their probabilistic predictions (pandas.DataFrame) as values.
@@ -321,7 +321,7 @@ All methods are decorated as <code>@abstractmethod</code> and must be implemente
    <code>proba_predictions_dict</code> : dict[str, pd.DataFrame]
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_feature_importance_dict()</strong>
 </div>
 <p>Method for extracting trained models and their feature importance from a used framework. Returns the results in a dictionary format with model names as keys and the list of features sorted by feature importance as values.
@@ -331,7 +331,7 @@ All methods are decorated as <code>@abstractmethod</code> and must be implemente
     <code>feature_importance_dict</code> : dict[str, list]
     </br>
     </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>save_results(<code>leaderboard, predictions_dict, proba_predictions_dict, feature_importance_dict, y_true, saving_path</code>)</strong>
 </div>
 <p>Method for saving results returned by the <code>convert()</code> method in a specified or default directory.
@@ -356,7 +356,7 @@ All methods are decorated as <code>@abstractmethod</code> and must be implemente
 <code>saving_path</code> : Path </br>
 <em> path to a saving directory, if not specified default is timestamp + df_name</em></br>
 <br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>convert(<code>saving_path</code>)</strong>
 </div>
 <p>&emsp; Primary method performing all the necessary calculations and returning the converted objects: <br>
