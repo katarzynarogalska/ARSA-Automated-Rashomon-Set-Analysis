@@ -2,7 +2,7 @@
 
 # BuildRashomonIntersectionH2O
 
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.pipelines.pipelines_user_input.<strong>BuildRashomonIntersectionH2O</strong>(models_directory, test_data, target_column, df_name, metrics, custom_weights, weighted_sum_method, delta, feature_imp_needed, converter_results_directory)
 </div>
 </br>
@@ -96,7 +96,7 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 </div>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>preview_rashomon()</strong>
 </div>
 &emsp; Method illustrating the leaderboard and the plot with all possible epsilon values and the Rashomon Intersection sizes for different epsilon values. <br>
@@ -104,14 +104,14 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>visualize_rashomon_set_volume()</strong>
 </div>
 &emsp; Method for visualising Rashomon Intersection size depending on different epsilon values.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>set_epsilon(<code>epsilon</code>)</strong>
 </div>
 &emsp; Sets the epsilon parameter value to be used when constructing the Rashomon Intersection object.<br>
@@ -122,7 +122,7 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 &emsp; <code>epsilon</code> : float <br>
 <br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>build(<code>launch_dashboard</code>)</strong>
 </div>
 &emsp;Builds the Rashomon Intersection pipeline from H2O models. <br>
@@ -148,7 +148,7 @@ Individual plots can later be generated directly from the <code>IntersectionVisu
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>dashboard_close()</strong>
 </div>
 &emsp; Method for stopping all Streamlit processes and closing the dashboard.<br>

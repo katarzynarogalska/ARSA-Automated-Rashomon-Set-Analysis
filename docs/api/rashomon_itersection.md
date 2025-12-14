@@ -3,7 +3,7 @@
 # RashomonIntersection
 
 
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.<strong>RashomonIntersection</strong>(leaderboard, predictions, proba_predictions, feature_importances, metrics, epsilon, custom_weights, weighted_sum_method)
 </div>
 </br>
@@ -97,7 +97,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </div>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_set_for_metric(<code>metric, epsilon</code>)</strong>
 </div>
 &emsp; Method for getting Rashomon set for a given metric. Parameter <code>metric</code> specifies metric for which Rashomon set is to be calculated. If the value of epsilon is not specified, uses <code>self.epsilon</code> value. Returns a list of models that are in the Rashomon set for the given metric.
@@ -112,7 +112,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_rashomon_intersection(<code>epsilon</code>)</strong>
 </div>
 &emsp; Method for calculating the intersection of Rashomon sets by identifying models that are present in the Rashomon set for each metric and the given epsilon. If the value of epsilon is not specified, uses <code>self.epsilon</code> value. Returns a list of model names present in the Rashomon Intersection. If the intersection is empty, returns an empty list.
@@ -125,7 +125,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_set(<code>epsilon</code>)</strong>
 </div>
 &emsp; Method that returns the names of models included in the Rashomon Intersection for a specified epsilon and two metrics. If the value of epsilon is not specified, uses <code>self.epsilon</code> value. This method overrides the implementation from the RashomonSet class to use intersection models instead of single-metric models.
@@ -138,7 +138,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_predictions()</strong>
 </div>
 &emsp; Override method to use intersection models, not single metric models. Returns predictions and proba predictions for models present in Rashomon Intersection. 
@@ -151,7 +151,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_feature_importances()</strong>
 </div>
 &emsp; Override method to select feature importance information for only models present in the Rashomon Intersection.
@@ -161,7 +161,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_base_model(<code>weight1</code>, <code>weight2</code>)</strong>
 </div>
 &emsp; Method for finding base_model based on user passed weight values. Returns model name which maximizes value of <code>w1 * metrics[0] + w2 * metric[1]</code>. If many models have the same sum value, base model is the first one in the leaderboard.  This method overrides the implementation from the RashomonSet class to use intersection models instead of single-metric models.<br>
@@ -178,7 +178,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_worst_model()</strong>
 </div>
 &emsp; Method for finding the worst model based on user passed weight values. Returns model name which minimizes value of <code>w1 * metrics[0] + w2 * metric[1]</code>. If many models have the same sum value, the worst model is the first one in the leaderboard. This method overrides the implementation from the RashomonSet class to use intersection models instead of single-metric models. <br>
@@ -188,7 +188,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_same_score_as_base()</strong>
 </div>
 &emsp; Method used to find models in the Rashomon Intersection set that produce the same weighted sum of metrics values as base model. Returns number of models found with the same score as base model and list of their names. This method overrides the implementation from the RashomonSet class to use intersection models instead of single-metric models.
@@ -201,7 +201,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_weights_entropy_based()</strong>
 </div>
 &emsp; Method for finding weights based on the entropy method. Returns weights as a pandas Series with index as metric names and values as weights. The weights should satisfy the constraint that they sum to 1. Entropy based weights are defined as:<br>
@@ -223,7 +223,7 @@ Read more about the entropy method : [Effectiveness of Entropy Weight Method in 
     &emsp; <code>weights</code> : pd.Series
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_base_model_entropy_based()</strong>
 </div>
 &emsp; Method for finding base_model based on entropy method. Finds the base model by computing the weighted sum of the two metrics using entropy-based weights and selecting the model with the highest score. If many models have the same sum value, base model is the first one in the leaderboard.
@@ -234,7 +234,7 @@ Read more about the entropy method : [Effectiveness of Entropy Weight Method in 
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_weights_critic_method()</strong>
 </div>
 &emsp; Method for finding weights based on the CRITIC (Criteria Importance Through Intercriteria Correlation) method. Returns weights as a pandas Series with index as metric names and values as weights. The weights should satisfy the constraint that they sum to 1. CRITIC based weights are defined as:
@@ -264,7 +264,7 @@ Read more about the CRITIC method : [Selected Multi-Criteria Decision-Making Met
 </br>
     
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_base_model_critic_based()</strong>
 </div>
 &emsp; Method for finding base_model based on CRITIC method. Finds the base model by computing the weighted sum of the two metrics using CRITIC-based weights and selecting the model with the highest score. If many models have the same sum value, base model is the first one in the leaderboard.
@@ -276,7 +276,7 @@ Read more about the CRITIC method : [Selected Multi-Criteria Decision-Making Met
 </br>
     
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_metrics(<code>delta</code>)</strong>
 </div>
 &emsp; Method for getting all Rashomon Intersection metrics in a dictionary format.  Delta parameter is a threshold for probabilistic ambiguity and discrepancy. Returns all numeric metrics and information on Rashomon intersection (not including VPRs and Agreement Rates). This method overrides the implementation from the RashomonSet class to use intersection models instead of single-metric models.
@@ -290,7 +290,7 @@ Read more about the CRITIC method : [Selected Multi-Criteria Decision-Making Met
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>summarize_rashomon(<code>delta</code>)</strong>
 </div>
 &emsp; Method for printing all calculated metrics for Rashomon Intersection in a structured format. This method overrides the implementation from the RashomonSet class to use intersection models instead of single-metric models.

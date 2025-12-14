@@ -2,7 +2,7 @@
 
 # RashomonSet
 
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.<strong>RashomonSet</strong>(leaderboard, predictions, proba_predictions, feature_importances, base_metric, epsilon)
 </div>
 </br>
@@ -98,7 +98,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
 <strong>Methods</strong>
 </div>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>determine_task_type()</strong>
 </div>
 &emsp; Returns whether the task type for a given dataset is binary or multiclass classification based on prediction vectors. If another task type is determined, the method throws ValueError. 
@@ -109,7 +109,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>determine_number_of_classes()</strong>
 </div>
 &emsp; Method for determining number of classes in the task based on predictions vector.
@@ -120,7 +120,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>determine_number_of_samples()</strong>
 </div>
 &emsp; Method for determining number of samples in the task based on predictions vector.
@@ -131,7 +131,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_base_model()</strong>
 </div>
 &emsp; Returns the name of the model which achieved the best score for the evaluation metric specified by base_metric parameter. Uses the METRICS_GREATER_IS_BETTER to include the differences in metrics evaluation.
@@ -142,7 +142,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_worst_model()</strong>
 </div>
 &emsp; Returns the name of the model which achieved the worst score for the evaluation metric specified by base_metric parameter. Uses the METRICS_GREATER_IS_BETTER to include the differences in metrics evaluation.
@@ -152,7 +152,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
     &emsp;<code> worst_model</code> : str
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>find_same_score_as_base()</strong>
 </div>
 &emsp; Returns the number and names of models which achieved the same score for the evaluation metric specified by base_metric parameter as the base_model. Used especially when there are multiple models with the same scores.
@@ -164,7 +164,7 @@ The <code>epsilon</code> parameter value should be greater than 0, as it represe
 &emsp; <code>same_scores_models</code> : list
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_set(<code>epsilon</code>)</strong>
 </div>
 &emsp; Returns the names of models that are included in the Rashomon Set for a specified epsilon and base_metric. Rashomon set is defined as: </br>
@@ -185,7 +185,7 @@ Read more about the Rashomon Set : [Predictive Multiplicity in Classification (D
     &emsp; <code>rashomon_set</code> : list
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_predictions()</strong>
 </div>
 &emsp; Returns the subsets of predictions and proba_predictions dictionaries containing only models that are included in the Rashomon Set.
@@ -198,7 +198,7 @@ Read more about the Rashomon Set : [Predictive Multiplicity in Classification (D
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_feature_importances()</strong>
 </div>
 &emsp; Returns the subsets of the feature_importance_dict containing only models that are included in the Rashomon Set.
@@ -209,7 +209,7 @@ Read more about the Rashomon Set : [Predictive Multiplicity in Classification (D
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>binary_ambiguity()</strong>
 </div>
 &emsp; Calculates binary ambiguity of a rashomon set by counting all observations where at least one model made a different class prediction than the base model. Those observations are considered ambiguous. Returns the fraction of ambiguous observations. Ambiguity is defined as:</br>
@@ -229,7 +229,7 @@ Note : Method available only for binary classification task type.
     &emsp; <code>binary_ambiguity</code> : float
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>multiclass_ambiguity()</strong>
 </div>
 &emsp; Calculates multiclass ambiguity of the Rashomon Set by counting all observations where at least one model made a different class prediction than the base model. Those observations are considered ambiguous. Returns the fraction of ambiguous observations. Multiclass ambiguity is defined as:</br>
@@ -250,7 +250,7 @@ Note: Method available only for multiclass classification task type.
     &emsp; <code>multiclass_ambiguity</code> : float
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>probabilistic_ambiguity(<code>delta</code>)</strong>
 </div>
 &emsp; Calculates probabilistic ambiguity of the Rashomon Set by counting all observations where at least one model made a different risk prediction than the base model. Risk predictions need to have a difference greater than delta to be considered conflicting. Returns the fraction of ambiguous observations. The definition of probabilistic ambiguity is as follows:</br>
@@ -276,7 +276,7 @@ Note : Method available only for binary classification task type.
     &emsp; <code>probabilistic_ambiguity</code> : float
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>binary_discrepancy()</strong>
 </div>
 &emsp; Calculates discrepancy for binary classification task by counting how many predictions differ between base and reference model. Then choses the max sum of different predictions across all models from the Rashomon Set. Discrepancy is defined as:
@@ -296,7 +296,7 @@ Note: Method available only for binary classification task type.
     &emsp; <code>binary_discrepancy</code> : float
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>multiclass_discrepancy()</strong>
 </div>
 &emsp; Calculates discrepancy for multiclass classification tasks by counting how many predictions differ between base and reference model. Then chooses the max sum of different predictions across all models from the Rashomon Set. Multiclass disrepancy is defined as:<br>
@@ -317,7 +317,7 @@ Note : Method available only for multiclass classification task type.
     &emsp; <code>multiclass_discrepancy</code> : float
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>probabilistic_discrepancy(<code>delta</code>)</strong>
 </div>
 &emsp; Calculates discrepancy for binary target task by counting how many risk predictions differ between base and reference model. For predictions to be considered conflicting their difference must be greater than delta. Then choses the max sum of different predictions across all models from the Rashomon Set. Probabilistic discrepancy is defined as follows:</br>
@@ -343,7 +343,7 @@ Note : Method available only for binary classification task type.
     &emsp; <code>probabilistic_discrepancy</code> : float
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>viable_prediction_range()</strong>
 </div>
 &emsp; Calculates the viable prediction range for each observation in the test dataset as the min and max risk probability predicted across all models in the Rashomon Set. Wide prediction range suggests high uncertainty about the observations prediction. VPR for the given observation is defined as: </br>
@@ -364,7 +364,7 @@ Note : Method available only for binary classification task type.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>agreement_rate()</strong>
 </div>
 &emsp; For each observation, calculates the percentage of models, which made the same class prediction as the base model. If all models from the Rashomon Set predicted the same class as the base model, the agreement rate for the observation equals 1. 
@@ -374,7 +374,7 @@ Note : Method available only for binary classification task type.
     &emsp; <code>agreement_rates</code> : list[float]
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>percent_agreement()</strong>
 </div>
 &emsp; Calculates the proportion of observations for which each model from the Rashomon Set predicted the same class as the base model. Returns a dictionary mapping model names to their corresponding agreement percentages with the base model. If a given model made the same predictions for all observations as the base model, its percent agreement equals 100%.
@@ -386,7 +386,7 @@ Note : Method available only for binary classification task type.
 </br>
 
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>rashomon_ratio()</strong>
 </div>
 &emsp; Calculates Rashomon Ratio which is the ratio of the Rashomon Set size to the total number of models present in the leaderboard. 
@@ -407,7 +407,7 @@ Read more about the Rashomon Ratio in: [A Study in Rashomon Curves and Volumes: 
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_patterns_rashomon_set()</strong>
 </div>
 &emsp; Method to retrieve all unique prediction patterns from the Rashomon Set, representing the collection of predictions produced by each model in the set. Returns a set of patterns in the Rashomon Set.
@@ -418,7 +418,7 @@ Read more about the Rashomon Ratio in: [A Study in Rashomon Curves and Volumes: 
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_patterns_hypothesis_set()</strong>
 </div>
 &emsp; Method to retrieve all unique prediction patterns from models present in the hypothesis space (leaderboard).
@@ -429,7 +429,7 @@ Read more about the Rashomon Ratio in: [A Study in Rashomon Curves and Volumes: 
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>pattern_rashomon_ratio()</strong>
 </div>
 &emsp; Method for calculating Pattern Rashomon Ratio, defined as ratio of the number of unique prediction patterns in the Rashomon Set to the total number of unique predictions patterns in the hypothesis space (leaderboard).
@@ -454,7 +454,7 @@ Read more about the Pattern Rashomon Ratio in: [A Study in Rashomon Curves and V
 <br>
 
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>rashomon_capacity( <code>sample_index</code> )</strong>
 </div>
 &emsp; Method for calculating Rashomon Capacity for a given sample. The parameter <code>sample_index</code> should be an index of a sample the Rashomon Capacity is to be calculated. The output value is a float in the range [1, c], where c is the number of classes in the classification task. </br>
@@ -473,7 +473,7 @@ Read more about the Pattern Rashomon Ratio in: [A Study in Rashomon Curves and V
 </br>
 <br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>generate_transition_matrix( <code>sample_index</code> )</strong>
 </div>
 &emsp; Method for generating transition matrix for a given sample. Transition matrix (m, c) is a matrix, where m corresponds to the number of models included in the set, while c denotes the number of classes associated with the prediction task. This matrix is used by the Blahut–Arimoto algorithm to compute the channel capacity.
@@ -487,7 +487,7 @@ Read more about the Pattern Rashomon Ratio in: [A Study in Rashomon Curves and V
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>blahut_arimoto_algorithm( <code>transition_matrix</code>,  <code>max_iterations</code>, <code>tolerance</code>)</strong>
 </div>
 &emsp; Method for computing the <em>channel capacity</em> for a given sample. 
@@ -508,7 +508,7 @@ Channel capacity is defined as the maximum mutual information between the channe
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>cohens_kappa()</strong>
 </div>
 &emsp; Method for calculating Cohen's Kappa metric for every model in the Rashomon Set relative to the base model.
@@ -527,7 +527,7 @@ where $p_o$ denotes observed agreement between two models (proportion of matchin
     &emsp; <code>cohens_kappa_dict</code> : dict
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>cohens_kappa_matrix()</strong>
 </div>
 &emsp; Method for calculating the Cohen's Kappa metric for every pair of models in the Rashomon Set. It returns a symmetric matrix where the entry at [i, j] represents the Cohen's Kappa score between model i and model j. 
@@ -539,7 +539,7 @@ Diagonal entries are 1.0, representing a model compared with itself.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_rashomon_metrics( <code>delta</code> )</strong>
 </div>
 &emsp; Method for returning all Rashomon Set related metrics and attributes in a dictionary format. The retuned properties are: base model, rashomon set size, task type, number of classes, rashomon ratio, pattern rashomon ratio, ambiguity, discrepancy, probabilistic ambiguity, probabilistic discrepancy, VPRs, agreement rates, percent agreements, mean rashomon capacity, min rashomon capacity, max rashomon capacity, std rashomon capacity. 
@@ -554,7 +554,7 @@ Diagonal entries are 1.0, representing a model compared with itself.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>summarize_rashomon( <code>delta</code> )</strong>
 </div>
 &emsp; Method for printing key Rashomon Set related metrics and attributes on the console. The printed properties are: base metric, base model, models with the same score as base, best and worst score across all rashomon set models, rashomon set size, task type, number of classes, rashomon ratio, pattern rashomon ratio, ambiguity, discrepancy, probabilistic ambiguity, probabilistic discrepancy, min agreement rate, max agreement rate, std agreement rage, percent agreements, mean rashomon capacity, min rashomon capacity, max rashomon capacity, std rashomon capacity. 

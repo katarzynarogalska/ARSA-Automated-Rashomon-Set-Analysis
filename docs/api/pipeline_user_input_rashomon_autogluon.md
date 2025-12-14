@@ -2,7 +2,7 @@
 
 # BuildRashomonAutogluon
 
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.pipelines.pipelines_user_input.<strong>BuildRashomonAutogluon</strong>(predictor, test_data, df_name, base_metric, delta, feature_imp_needed, converter_results_directory)
 </div>
 </br>
@@ -81,7 +81,7 @@ Example usage of this pipeline can be found at <code>demo_notebooks/AutoGluon_pi
 </div>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>preview_rashomon()</strong>
 </div>
 &emsp; Method illustrating the leaderboard and the plot with all possible epsilon values and the Rashomon Set sizes for different epsilon values. <br>
@@ -89,14 +89,14 @@ Example usage of this pipeline can be found at <code>demo_notebooks/AutoGluon_pi
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>visualize_rashomon_set_volume()</strong>
 </div>
 &emsp; Method for visualising Rashomon set size depending on different epsilon values.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>set_epsilon(<code>epsilon</code>)</strong>
 </div>
 &emsp; Sets the epsilon parameter value to be used when constructing the Rashomon Set object.<br>
@@ -133,7 +133,7 @@ Individual plots can later be generated directly from the <code>Visualizer</code
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>dashboard_close()</strong>
 </div>
 &emsp; Method for stopping all Streamlit processes and closing the dashboard.<br>

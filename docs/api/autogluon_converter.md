@@ -2,7 +2,7 @@
 
 # PredictorConverter 
 
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.converters.<strong>PredictorConverter</strong>(predictor, test_data, df_name, feature_imp_needed = True)
 </div>
 </br>
@@ -55,7 +55,7 @@ predictor parameter
 <strong>Methods</strong>
 </div>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_leaderboard()</strong>
 </div>
 &emsp; Creates a dataframe with all trained models and their evaluation metrics values obtained from predictor.
@@ -66,7 +66,7 @@ predictor parameter
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_predictions_dict()</strong>
 </div>
 &emsp; Creates a dictionary with model names as keys and their class prediction vectors as values.
@@ -77,7 +77,7 @@ predictor parameter
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_proba_predictions_dict()</strong>
 </div>
 &emsp; Creates a dictionary with model names as keys and their class probabilities predictions as values.
@@ -88,7 +88,7 @@ predictor parameter
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_feature_importance_dict()</strong>
 </div>
 &emsp; Creates a dictionary where the keys are model names and the values are lists of features sorted in descending order of importance, so that the most important feature appears first in each list. 
@@ -99,7 +99,7 @@ predictor parameter
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>extract_target_column()</strong>
 </div>
 &emsp; Extracts the target column from the test dataset using the .label attribute of the TabularPredictor object.
@@ -110,7 +110,7 @@ predictor parameter
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>save_results(<code>leaderboard, predictions_dict, proba_predictions_dict, feature_importance_dict, y_true, saving_path</code>)</strong>
 </div>
 &emsp;Method for saving results from creating a leaderboard and all dictionaries on disk in .csv and .pickle formats.
@@ -136,7 +136,7 @@ predictor parameter
 &emsp; &emsp;<em> path to a directory where results should be saved, if not specified the default of timestamp + df_name is used to create a new directory</em></br>
 </br>
     </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>convert(<code>saving_path</code>)</strong>
 </div>
 &emsp; Final method used to create leaderboard, predictions_dict, proba_predictions dict and feature_importance_dict and save the results using save_results() method. If feature_imp_needed parameter is False, feature_importance_dict is not created and the method returns NaN as its value.

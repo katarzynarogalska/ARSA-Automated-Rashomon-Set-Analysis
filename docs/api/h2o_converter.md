@@ -2,7 +2,7 @@
 
 # H2OConverter 
 
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px; ">
 class rashomon_analysis.converters.<strong>H2OConverter</strong>(models_directory, test_data, target_column, df_name, feature_imp_needed=True)
 </div>
 </br>
@@ -79,7 +79,7 @@ result in a longer runtime of .convert() method.
 <strong>Methods</strong>
 </div>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>determine_task_type()</strong>
 </div>
 &emsp; Returns whether the task type for a given dataset is binary or multiclass classification based on target_column and test_data parameters. If another task type is determined, the method throws ValueError. 
@@ -89,7 +89,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>task_type</code> : str
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>load_all_models()</strong>
 </div>
 &emsp; Loads all H2O models objects from a given model_directory and saves them in a list format. 
@@ -99,7 +99,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>loaded_models</code> : list
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_prediction_frames()</strong>
 </div>
 &emsp; Used to obtain predictions returned by all H2O models and save them in a dictionary format with model names as keys and predictions dataframes as values. 
@@ -109,7 +109,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>predictions</code> : dict[str, pd.DataFrame]
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_class_predictions_dict()</strong>
 </div>
 &emsp; Used to obtain class predictions returned by all H2O models and save them in a dictionary format with model names as keys and predictions in a pd.Series format as values. 
@@ -120,7 +120,7 @@ result in a longer runtime of .convert() method.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_proba_predictions_dict()</strong>
 </div>
 &emsp; Used to obtain class probabilities predictions returned by all H2O models and save them in a dictionary format with model names as keys and probability predictions in a pd.DataFrame format as values. 
@@ -131,7 +131,7 @@ result in a longer runtime of .convert() method.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>get_feature_importance_dict()</strong>
 </div>
 &emsp; Used to obtain feature importances from all H2O models and save them in a dictionary format with model names as keys and features sorted in a descending order based on their importance as values.
@@ -142,7 +142,7 @@ result in a longer runtime of .convert() method.
 </br>
 </br>
 
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>extract_target_column()</strong>
 </div>
 &emsp; Used to extract the target column from the test dataset. 
@@ -152,7 +152,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>y_true</code> : pd.DataFrame
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>calculate_multiclass_metrics()</strong>
 </div>
 &emsp; Calculates multiclass classification evaluation metrics from MULTICLASS_METRICS_DICT for all loaded models based on their prediction vectors and target column. Calculated results are stored in a pd.DataFrame object containing all evaluation metric scores for each model.
@@ -162,7 +162,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>metrics_df</code> : pd.DataFrame
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>calculate_binary_metrics()</strong>
 </div>
 &emsp; Calculates binary classification evaluation metrics from BINARY_METRICS_DICT for all loaded models based on their prediction vectors and target column. Calculated results are stored in a pd.DataFrame object containing all evaluation metric scores for each model.
@@ -172,7 +172,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>metrics_df</code> : pd.DataFrame
 </br>
 </br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>save_results(<code>leaderboard, predictions_dict, proba_predictions_dict, feature_importance_dict, y_true, saving_path</code>)</strong>
 </div>
 &emsp;Method for saving results from creating a leaderboard and all dictionaries on disk in .csv and .pickle formats.
@@ -197,7 +197,7 @@ result in a longer runtime of .convert() method.
     &emsp; <code>saving_path</code> : Path </br>
     &emsp; &emsp;<em> path to a directory where the results should be saved, if not specified the default of timestamp + df_name is used to create a new directory</em></br>
     <br>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>convert(<code>saving_path</code>)</strong>
 </div>
 &emsp; Final method used to create and save leaderboard created in calculate_binary_metrics() or calculate_multiclass_metrics() based on the task type, class_predictions_dict, proba_predictions_dict and feature_importance_dict created in the corresponding methods. If feature_imp_needed parameter is False, feature_importance_dict is not created and the method returns NaN as its value.
