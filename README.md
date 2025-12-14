@@ -8,7 +8,7 @@ ARSA is a Python library for detailed analysis of the Rashomon Sets - the collec
 ## Installation 
 Install the package with PyPI:
 ```bash 
-pip install packge-name
+pip install arsa
 ```
 
 ## Example usage 
