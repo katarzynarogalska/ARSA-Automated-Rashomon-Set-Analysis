@@ -386,7 +386,7 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 &emsp; <code>epsilon</code> : float <br>
 <br></p>
 <div style="color: #60824f; font-size: 18px;">
-    <strong>build()</strong>
+    <strong>build(<code>launch_dashboard</code>)</strong>
 </div>
 <p>&emsp;Builds the Rashomon Set pipeline from H2O models. <br>
 &emsp; Creates Rashomon Set object and Visualizer object from user's input and launches a Streamlit dashboard in a subprocess for interactive visualization.
@@ -399,9 +399,8 @@ Example usage of this pipeline can be found at <code>demo_notebooks/H2O_pipeline
 All inputs required to build the Rashomon Set object are extracted from the user's data, which is processed and converted during the pipeline initialization.</li><br>
 <li>Initializes the <code>Visualizer</code> object for interactive analysis of the Rashomon Set. <br>
 Individual plots can later be generated directly from the <code>Visualizer</code> object.</li><br>
-<li>Generates plots for analysis depending on the task type (binary or multiclass), and stores them temporarily with their descriptions for the Streamlit dashboard.</li><br>
-<li>Closes any previous Streamlit processes to avoid conflicts.</li><br>
-<li>Launches the Streamlit dashboard in a subprocess on the local machine (localhost), allowing interactive exploration of the Rashomon Set properties without blocking the main workflow.</li>
+<li>If <code>launch_dashboard</code> is set to True (default) it generates plots for analysis depending on the task type (binary or multiclass), and stores them temporarily with their descriptions for the Streamlit dashboard. It closes any previous Streamlit processes to avoid conflicts.</li><br>
+<li>If <code>launch_dashboard</code> is set to True (default) launches the Streamlit dashboard in a subprocess on the local machine (localhost), allowing interactive exploration of the Rashomon Set properties without blocking the main workflow.</li>
 
 </ul>
 <p></br>
