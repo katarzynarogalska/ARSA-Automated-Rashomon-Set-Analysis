@@ -21,7 +21,7 @@
     
     
       
-        <title>Autogluon converter - ARSA Documentation</title>
+        <title>Autogluon converter - ARSA_ML Documentation</title>
       
     
     
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ARSA Documentation" class="md-header__button md-logo" aria-label="ARSA Documentation" data-md-component="logo">
+    <a href="../.." title="ARSA_ML Documentation" class="md-header__button md-logo" aria-label="ARSA_ML Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +100,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ARSA Documentation
+            ARSA_ML Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -184,13 +184,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ARSA Documentation" class="md-nav__button md-logo" aria-label="ARSA Documentation" data-md-component="logo">
+    <a href="../.." title="ARSA_ML Documentation" class="md-nav__button md-logo" aria-label="ARSA_ML Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    ARSA Documentation
+    ARSA_ML Documentation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -286,7 +286,7 @@
 
 <p><a href="../">back</a></p>
 <h1 id="predictorconverter">PredictorConverter</h1>
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.converters.<strong>PredictorConverter</strong>(predictor, test_data, df_name, feature_imp_needed = True)
 </div>
 <p></br>
@@ -338,7 +338,7 @@ predictor parameter
 <strong>Methods</strong>
 </div>
 <p></br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_leaderboard()</strong>
 </div>
 <p>&emsp; Creates a dataframe with all trained models and their evaluation metrics values obtained from predictor.
@@ -348,7 +348,7 @@ predictor parameter
     &emsp; <code>leaderboard</code> : pd.DataFrame
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_predictions_dict()</strong>
 </div>
 <p>&emsp; Creates a dictionary with model names as keys and their class prediction vectors as values.
@@ -358,7 +358,7 @@ predictor parameter
     &emsp; <code>predictions_dict</code> : dict[str, pd.Series]</br>
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_proba_predictions_dict()</strong>
 </div>
 <p>&emsp; Creates a dictionary with model names as keys and their class probabilities predictions as values.
@@ -368,7 +368,7 @@ predictor parameter
     &emsp; <code>proba_predictions_dict</code> : dict[str, pd.Dataframe(n_observations, n_classes)]</br>
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>create_feature_importance_dict()</strong>
 </div>
 <p>&emsp; Creates a dictionary where the keys are model names and the values are lists of features sorted in descending order of importance, so that the most important feature appears first in each list. 
@@ -378,7 +378,7 @@ predictor parameter
     &emsp; <code>feature_importance_dict</code> : dict[str, list]</br>
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>extract_target_column()</strong>
 </div>
 <p>&emsp; Extracts the target column from the test dataset using the .label attribute of the TabularPredictor object.
@@ -388,7 +388,7 @@ predictor parameter
     &emsp; <code>y_true</code> : pd.DataFrame</br>
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>save_results(<code>leaderboard, predictions_dict, proba_predictions_dict, feature_importance_dict, y_true, saving_path</code>)</strong>
 </div>
 <p>&emsp;Method for saving results from creating a leaderboard and all dictionaries on disk in .csv and .pickle formats.
@@ -414,7 +414,7 @@ predictor parameter
 &emsp; &emsp;<em> path to a directory where results should be saved, if not specified the default of timestamp + df_name is used to create a new directory</em></br>
 </br>
     </br></p>
-<div style="color: #60824f; font-size: 0.9rem;">
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>convert(<code>saving_path</code>)</strong>
 </div>
 <p>&emsp; Final method used to create leaderboard, predictions_dict, proba_predictions dict and feature_importance_dict and save the results using save_results() method. If feature_imp_needed parameter is False, feature_importance_dict is not created and the method returns NaN as its value.

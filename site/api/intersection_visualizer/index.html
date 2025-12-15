@@ -21,7 +21,7 @@
     
     
       
-        <title>Intersection visualizer - ARSA Documentation</title>
+        <title>Intersection visualizer - ARSA_ML Documentation</title>
       
     
     
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ARSA Documentation" class="md-header__button md-logo" aria-label="ARSA Documentation" data-md-component="logo">
+    <a href="../.." title="ARSA_ML Documentation" class="md-header__button md-logo" aria-label="ARSA_ML Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +100,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            ARSA Documentation
+            ARSA_ML Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -184,13 +184,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ARSA Documentation" class="md-nav__button md-logo" aria-label="ARSA Documentation" data-md-component="logo">
+    <a href="../.." title="ARSA_ML Documentation" class="md-nav__button md-logo" aria-label="ARSA_ML Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    ARSA Documentation
+    ARSA_ML Documentation
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -286,7 +286,7 @@
 
 <p><a href="../">back</a></p>
 <h1 id="intersectionvisualizer">IntersectionVisualizer</h1>
-<div style="background-color: #c2deb1; padding: 10px; border-radius: 4px;">
+<div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
 class rashomon_analysis.visualizers.<strong>IntersectionVisualizer</strong>(rashomon_intersection, y_true)
 </div>
 <p><br>
@@ -330,7 +330,7 @@ This class is responsible for creating visualizations and descriptions of the ke
 As this is a subclass of the Visualizer class, all methods, which are not specified in this section remain the same as in :</p>
 <p><a href="../visualizer/">Visualizer documentation</a>
 <br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>base_metric_return()</strong>
 </div>
 <p>&emsp; Overrides the base_metric_return() method from Visualizer class. Returns the list of metrics specified in the RashomonIntersection object to be analyzed. Returns the metrics and an empty plot.<br />
@@ -342,7 +342,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>base_metrics</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>weighted_method_return()</strong>
 </div>
 <p>&emsp; Additional method used only for the Rashomon Intersection analysis. Returns the name of the <code>weighted_sum_method</code> specified in the RashomonIntersection object to be analyzed. Returns the method name and an empty plot.<br />
@@ -354,7 +354,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>weighted_sum_method</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>set_size_indicator()</strong>
 </div>
 <p>&emsp; Overrides the set_size_indicator() from the Visualizer class. Creates the gauge plot representing the fracton of models from the leaderboard that are included in the Rashomon Intersection. Returns the plot with its description. 
@@ -366,7 +366,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>ambiguity_vs_epsilon()</strong>
 </div>
 <p>&emsp; Overrides the ambigutiy_vs_epsilon() method from the Visualizer class. Creates the Line chart of the possible <code>ambiguity</code> values with respect to different <code>epsilons</code>. The x-axis represents the epsilon values, while the y-axis shows the corresponding ambiguities. The actual ambiguity value for the given Rashomon Intersection is highlighted with the different color. Returns the plot with its description.
@@ -378,7 +378,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>proba_ambiguity_vs_epsilon()</strong>
 </div>
 <p>&emsp; Overrides the proba_ambigutiy_vs_epsilon() method from the Visualizer class. Creates the Line chart of the possible <code>probabilistic_ambiguity</code> values with respect to different <code>epsilons</code>. The x-axis represents the epsilon values, while the y-axis shows the corresponding ambiguities. The actual probabilistic_ambiguity value for the given Rashomon Intersection is highlighted with the different color. Returns the plot with its description.
@@ -390,7 +390,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>discrepancy_vs_epsilon()</strong>
 </div>
 <p>&emsp;  Overrides the discrepancy_vs_epsilon() method from the Visualizer class. Creates the Line chart of the possible <code>discrepancy</code> values with respect to different <code>epsilons</code>. The x-axis represents the epsilon values, while the y-axis shows the corresponding discrepancies. The actual discrepancy value for the given Rashomon Intersection is highlighted with the different color. Returns the plot with its description.
@@ -402,7 +402,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>prba_discrepancy_vs_epsilon()</strong>
 </div>
 <p>&emsp;  Overrides the proba_discrepancy_vs_epsilon() method from the Visualizer class. Creates the Line chart of the possible <code>probabilistic_discrepancy</code> values with respect to different <code>epsilons</code>. The x-axis represents the epsilon values, while the y-axis shows the corresponding discrepancies. The actual probabilistic_discrepancy value for the given Rashomon Intersection is highlighted with the different color. Returns the plot with its description.
@@ -414,7 +414,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>rashomon_ratio_vs_epsilon()</strong>
 </div>
 <p>&emsp;  Overrides the rashomon_ratio_vs_epsilon() method from the Visualizer class. Creates a Line chart of the possible <code>rashomon_ratio</code> values with respect to different <code>epsilons</code>. The x-axis represents the epsilon values, while the y-axis shows the corresponding rashomon_ratios. The actual rashomon_ratio value for the given Rashomon Intersection is highlighted with a different color. Returns the plot with its description.
@@ -426,7 +426,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>pattern_rashomon_ratio_vs_epsilon()</strong>
 </div>
 <p>&emsp;  Overwrites the pattern_rashomon_ratio_vs_epsilon() method from the Visualizer class. Creates a Line chart of the possible <code>pattern_rashomon_ratio</code> values with respect to different <code>epsilons</code>. The x-axis represents the epsilon values, while the y-axis shows the corresponding pattern_rashomon_ratios. The actual pattern_rashomon_ratio value for the given Rashomon Intersection is highlighted with a different color. Returns the plot with its description.
@@ -438,7 +438,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>generate_rashomon_set_table()</strong>
 </div>
 <p>&emsp; Overrides the generate_rashomon_set_table() method from the Visualizer class. Creates a table with the names of models included in the intersection alongside with their scores for both specified evaluation metrics. Returns the table and the description containing information about the <code>base_model</code> and selected <code>metrics</code>.
@@ -450,7 +450,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>table_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>generate_gauge_for_metrics()</strong>
 </div>
 <p>&emsp; Creates gauge plots illustrating how many models from the separate Rashomon Sets for each metric are included in the Rashomon Intersection. Returns the plot with its description.
@@ -462,7 +462,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>plot_venn_diagram()</strong>
 </div>
 <p>&emsp; Creates the Venn diagram illustrating models, which are included in the separate Rashomon Sets for each metric, as well as the intersection of those two sets. Returns the plot with its description.
@@ -474,7 +474,7 @@ As this is a subclass of the Visualizer class, all methods, which are not specif
 &emsp; <code>plot_descr</code> : str
 </br>
 </br></p>
-<div style="color: #60824f; font-size: 18px;">
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>pareto_front_plot()</strong>
 </div>
 <p>&emsp; Creates the scatterplot with the x and y axes representing two evaluation metrics, and points representing models from the entire leaderboard. Models included in the Pareto Front are highlighted in a different color. To read more about the Parto Front in multiobjective optimization visit: </p>
