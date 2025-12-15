@@ -1,7 +1,8 @@
 # ARSA_ML - Automated Rashomon Set Analysis package 
 ### Weclome to the official ARSA_ML package site.
-![Weclome to the official ARSA_ML package site.
-](/docs/logo.jpg)
+<div align="center">
+  <img src="docs/logo.jpg" alt="Welcome to the official ARSA_ML package site">
+</div>
 
 
 
