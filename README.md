@@ -41,5 +41,5 @@ builder.dashboard_close()
 For detailed package dokumentation visit [documentation page](https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/) 
 
 ## Authors
-* Katarzyna Rogalska (repository owner)
+* [Katarzyna Rogalska](https://github.com/katarzynarogalska) (repository owner)
 * [Zuzanna Sieńko](https://github.com/sienkozuzanna) 
