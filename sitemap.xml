@@ -2,66 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/abstract_converter/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/autogluon_converter/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/h2o_converter/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/intersection_visualizer/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_abstract/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_converter_intersection/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_converter_rashomon/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_user_input_intersection_H2O/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_user_input_rashomon_H2O/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipeline_user_input_rashomon_autogluon/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/pipelines_user_input_intersection_autogluon/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/rashomon_itersection/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/rashomon_set/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://katarzynarogalska.github.io/ARSA-Automated-Rashomon-Set-Analysis/api/visualizer/</loc>
-         <lastmod>2025-12-14</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
 </urlset>
