@@ -107,6 +107,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
     &emsp; <code>metric</code>: str <br>
     &emsp; <code>epsilon</code>: float, default = None
 </br>
+<br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>rashomon_models_names</code> : list
 </br>
@@ -120,6 +121,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
     &emsp; <strong>Parameters :</strong> </br>
     &emsp; <code>epsilon</code>: float, default = None <br>
+    <br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>rashomon_models_names</code> : list
 </br>
@@ -133,6 +135,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 </br>
     &emsp; <strong>Parameters :</strong> </br>
     &emsp; <code>epsilon</code>: float, default = None <br>
+    <br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>rashomon_intersection</code> : list
 </br>
@@ -157,7 +160,8 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 &emsp; Override method to select feature importance information for only models present in the Rashomon Intersection.
 </br>
 </br>
-&emsp;  <code>rashomon_importances</code> : dict
+&emsp; <strong>Returns :</strong> </br>
+    &emsp; <code>rashomon_importances</code> : dict
 </br>
 </br>
 
@@ -172,6 +176,7 @@ This class is used for calculating Rashomon Set Intersection for two Rashomon Se
 &emsp; <code>weight1</code>: float
 <br>
 &emsp; <code>weight2</code>: float
+<br>
 <br>
 &emsp; <strong>Returns :</strong> </br>
 &emsp; <code>best_model</code> : str
@@ -219,6 +224,7 @@ $$
 In the context of calculating the weights of two base_metrics, $f_i$ is the scaled metric value and m is the number of models in the Rashomon Intersection. Then entropy is calculated for both base_metrics as $e(x_i)$ where $x_1$ is th first metric and $x_2$ the second one.<br>
 Read more about the entropy method : [Effectiveness of Entropy Weight Method in Decision-Making](https://onlinelibrary.wiley.com/doi/10.1155/2020/3564835) 
 </br>
+<br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>weights</code> : pd.Series
 </br>
@@ -259,8 +265,10 @@ Read more about the CRITIC method : [Selected Multi-Criteria Decision-Making Met
 
 &emsp;&emsp;<em>Note: This method involves computing the correlation matrix and standard deviations of the metrics. If CRITIC cannot be applied due to insufficient variation caused by identical metric values, or other numerical issues, it falls back to the entropy-based method.
 </em>
-&emsp; <strong>Returns :</strong> 
-&emsp; <code>best_model</code> : str
+<br>
+<br>
+    &emsp; <strong>Returns :</strong> </br>
+    &emsp; <code>weights</code> : pd.Series
 </br>
     
 
@@ -285,6 +293,7 @@ Read more about the CRITIC method : [Selected Multi-Criteria Decision-Making Met
 &emsp; <strong>Parameters :</strong> </br>
 &emsp; <code>delta</code>: float, default = 0.1
 </br>
+<br>
 &emsp; <strong>Returns :</strong> </br>
 &emsp; <code>metrics</code> : dict
 </br>

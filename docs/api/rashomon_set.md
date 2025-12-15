@@ -180,6 +180,7 @@ Read more about the Rashomon Set : [Predictive Multiplicity in Classification (D
 &emsp; <code>epsilon</code>: float, default = None
 </br>
 &emsp;&emsp;<em> When a different epsilon value is not specified the method uses the epsilon parameter value.</em>
+<br>
 </br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>rashomon_set</code> : list
@@ -401,6 +402,7 @@ where $\text{vol}(S_{\epsilon}(h_0))$ denotes the "volume" of the Rashomon Set â
 
 
 Read more about the Rashomon Ratio in: [A Study in Rashomon Curves and Volumes: A New Perspective on Generalization and Model Simplicity in Machine Learning (Definition 2)](https://arxiv.org/pdf/1908.01755v2)
+<br>
 </br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>rashomon_ratio</code> : float
@@ -482,6 +484,7 @@ Read more about the Pattern Rashomon Ratio in: [A Study in Rashomon Curves and V
     &emsp; <strong>Parameters :</strong> </br>
     &emsp; <code>sample_index</code> : int
 </br>
+<br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>transition_matrix</code> : np.ndarray
 </br>
@@ -534,6 +537,7 @@ where $p_o$ denotes observed agreement between two models (proportion of matchin
 Diagonal entries are 1.0, representing a model compared with itself.
 <br>
 <br>
+<br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>kappa_matrix</code> : pd.DataFrame
 </br>
@@ -549,6 +553,7 @@ Diagonal entries are 1.0, representing a model compared with itself.
     &emsp; <code>delta</code> : float, default = 0.1 <br>
     &emsp; &emsp; <em>delta parameter used in probabilitisc_ambiguity() and probabilitic_discrepancy() methods for binary task type</em>
 </br>
+<br>
     &emsp; <strong>Returns :</strong> </br>
     &emsp; <code>metrics</code> : dict
 </br>
