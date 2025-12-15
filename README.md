@@ -1,6 +1,9 @@
 # ARSA_ML - Automated Rashomon Set Analysis package 
+### Weclome to the official ARSA_ML package site.
+![Weclome to the official ARSA_ML package site.
+](/docs/logo.jpg)
 
-Weclome to the official ARSA_ML package site.
+
 
 ## Overview 
 ARSA_ML is a Python library for detailed analysis of the Rashomon Sets - the collections of models that perform nearly equally well on a given dataset. It provides tools to create various objects, analyse the related properties and metrics, as well as visualize the results. The package is compatible with two AutoML frameworks - AutoGluon and H2O. Additionally, you may analyze your own set of models if you present their results in a requsted format (See : [documentation](docs/api/index.md)).
