@@ -6,6 +6,7 @@ import random
 import inspect 
 import os
 import sys
+import importlib.resources as pkg_resources
 import subprocess
 import time
 import psutil
@@ -31,10 +32,17 @@ logging.basicConfig(
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3] #pipelines -> rahsomon_analysis ->src -> root
-RASHOMON_BINARY_APP_PATH = PROJECT_ROOT/"src"/"app"/"rashomon_binary_app.py"
-RASHOMON_MULTICLASS_APP_PATH = PROJECT_ROOT/"src"/"app"/"rashomon_multiclass_app.py"
-INTERSECTION_BINARY_APP_PATH = PROJECT_ROOT/"src"/"app"/"intersection_binary_app.py"
-INTERSECTION_MULTICLASS_APP_PATH = PROJECT_ROOT/"src"/"app"/"intersection_multiclass_app.py"
+# RASHOMON_BINARY_APP_PATH = PROJECT_ROOT/"src"/"app"/"rashomon_binary_app.py"
+# RASHOMON_MULTICLASS_APP_PATH = PROJECT_ROOT/"src"/"app"/"rashomon_multiclass_app.py"
+# INTERSECTION_BINARY_APP_PATH = PROJECT_ROOT/"src"/"app"/"intersection_binary_app.py"
+# INTERSECTION_MULTICLASS_APP_PATH = PROJECT_ROOT/"src"/"app"/"intersection_multiclass_app.py"
+
+INTERSECTION_BINARY_APP_PATH = Path(pkg_resources.files("app") / "intersection_binary_app.py")
+INTERSECTION_MULTICLASS_APP_PATH = Path(pkg_resources.files("app") / "intersection_multiclass_app.py")
+RASHOMON_BINARY_APP_PATH = Path(pkg_resources.files("app") / "rashomon_binary_app.py")
+RASHOMON_MULTICLASS_APP_PATH = Path(pkg_resources.files("app") / "rashomon_multiclass_app.py")
+
+
 PIPELINES_DIR = Path(__file__).resolve().parent
 TMP_DIR = PIPELINES_DIR / "tmp"
 TMP_DIR.mkdir(exist_ok=True)  
