@@ -390,7 +390,7 @@ def run_app_from_file(plots_file):
             unsafe_allow_html=True
         )
         descr= """Ambiguity can be interpreted as the proportion of observations that would receive a different prediction if we were to choose another model from the Rashomon Set, while
-        Discrepancy is the maximum proportion of individuals with different predictions from the base model."""
+        Discrepancy is the maximum proportion of individuals whose predictions would change if we choose a different competing model from the Rashomon Set."""
         st.markdown(
             f'<div class="section_description">{descr}</div>',
             unsafe_allow_html=True
@@ -417,7 +417,7 @@ def run_app_from_file(plots_file):
         use_probability = st.checkbox("Show probabilistic version", value=False)
         
         if use_probability:
-            st.markdown( f'<div class="section_description">While calculating probbilistic ambiguity and discrepancy, predictions are considered conflicting if the difference between their risk predictions is greater or equal to delta.</div>',
+            st.markdown( f'<div class="section_description">While calculating probabilistic ambiguity and discrepancy, the difference between risk probabilities is considered meaningful if it is greater then or equal to delta.</div>',
             unsafe_allow_html=True)
 
         lolipop_col, amb_col, discr_col = st.columns([1.1,1.5,1.5])

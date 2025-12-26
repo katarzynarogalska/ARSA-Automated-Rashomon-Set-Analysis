@@ -1291,7 +1291,7 @@ class Visualizer:
         models = [item[0] for item in sorted_items]
         values = [item[1] for item in sorted_items]
         short_labels = [
-            "Base Model" if m == self.rashomon_set.base_model else f"Model {i+1}" 
+            "Base Model" if m == self.rashomon_set.base_model else f"Model {i}" 
             for i, m in enumerate(models)
         ]
 
@@ -1343,6 +1343,13 @@ class Visualizer:
                 tickfont=tickfont_combined,
                 automargin=True,
                 autorange="reversed")
+        )
+        fig.update_yaxes(
+            tickmode="array",
+            tickvals = short_labels,
+            ticktext = short_labels,
+            tickfont = {**plot_axis_font, "size":8},
+            autorange = "reversed"
         )
 
         if full_agreement_count==1:
