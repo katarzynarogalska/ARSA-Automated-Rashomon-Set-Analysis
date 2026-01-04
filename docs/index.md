@@ -16,8 +16,8 @@ pip install arsa_ml
 
 ## Example usage 
 ```Python 
-from rashomon_analysis.pipelines.builder_abstract import *
-from rashomon_analysis.pipelines.pipelines_user_input import *
+from arsa_ml.pipelines.builder_abstract import *
+from arsa_ml.pipelines.pipelines_user_input import *
 
 #build pipeline
 builder = BuildRashomonH2O(models_directory=example_models_path, 

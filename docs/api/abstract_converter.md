@@ -3,7 +3,7 @@
 # Converter - abstract class
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px; ">
-class rashomon_analysis.converter.<strong>Converter</strong>
+class arsa_ml.converters.<strong>Converter</strong>
 </div>
 <br>
 This class is an abstract class asserting all converter classes have the same set of obligatory methods. Converters are used to provide models results to the RashomonSet/RashomonIntersection in a correct format.

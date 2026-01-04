@@ -3,7 +3,7 @@
 # PredictorConverter 
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class rashomon_analysis.converters.<strong>PredictorConverter</strong>(predictor, test_data, df_name, feature_imp_needed = True)
+class arsa_ml.converters.<strong>PredictorConverter</strong>(predictor, test_data, df_name, feature_imp_needed = True)
 </div>
 </br>
 This subclass of the Converter abstract class, which is used to transform Autogluon trained TabularPredictor object into leaderboard and dictionaries that can be used to build the Rashomon Set.

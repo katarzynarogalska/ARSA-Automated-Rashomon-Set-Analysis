@@ -3,7 +3,7 @@
 # RashomonSet
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class rashomon_analysis.<strong>RashomonSet</strong>(leaderboard, predictions, proba_predictions, feature_importances, base_metric, epsilon)
+class arsa_ml.rashomon_set<strong>RashomonSet</strong>(leaderboard, predictions, proba_predictions, feature_importances, base_metric, epsilon)
 </div>
 </br>
 This class is the core class of the package. It creates the Rashomon Set for a given epsilon value and selected evaluation metric. 

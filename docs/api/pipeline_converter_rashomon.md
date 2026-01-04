@@ -3,7 +3,7 @@
 # BuildRashomonFromConverted
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class rashomon_analysis.pipelines.pipelines_from_converters.<strong>BuildRashomonFromConverted</strong>(converter_results_path, base_metric, delta)
+class arsa_ml.pipelines.pipelines_from_converters.<strong>BuildRashomonFromConverted</strong>(converter_results_path, base_metric, delta)
 </div>
 </br>
 This is a subclass of <code>Builder</code> abstract class, which provides pipeline for creating and exploring the Rashomon Set created from parameters in a format propsed by the convert() method of converter classes.

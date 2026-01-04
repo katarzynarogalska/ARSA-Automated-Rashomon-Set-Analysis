@@ -3,7 +3,7 @@
 # H2OConverter 
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px; ">
-class rashomon_analysis.converters.<strong>H2OConverter</strong>(models_directory, test_data, target_column, df_name, feature_imp_needed=True)
+class arsa_ml.converters.<strong>H2OConverter</strong>(models_directory, test_data, target_column, df_name, feature_imp_needed=True)
 </div>
 </br>
 This is a subclass of the Converter abstract class, wich is used to transform H2O trained models into leaderboard and dictionaries that can be used to build the Rashomon Set. Uses H2O framework that expects Java to be installed.

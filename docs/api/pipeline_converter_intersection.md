@@ -3,7 +3,7 @@
 # BuildIntersectionFromConverted
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class rashomon_analysis.pipelines.pipelines_from_converters.<strong>BuildIntersectionFromConverted</strong>(converter_results_path, metrics, custom_weights, weighted_sum_method, delta)
+class arsa_ml.pipelines.pipelines_from_converters.<strong>BuildIntersectionFromConverted</strong>(converter_results_path, metrics, custom_weights, weighted_sum_method, delta)
 </div>
 </br>
 This is a subclass of the <code>Builder</code> abctract class, which provides pipeline for creating and exploring the Rashomon Intersection created from parameters in a format propsed by the convert() method of converter classes.

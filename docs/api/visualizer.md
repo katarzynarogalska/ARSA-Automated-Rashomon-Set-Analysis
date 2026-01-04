@@ -3,7 +3,7 @@
 # Visualizer
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class rashomon_analysis.visualizers.<strong>Visualizer</strong>(rashomon_set, y_true)
+class arsa_ml.visualizers.<strong>Visualizer</strong>(rashomon_set, y_true)
 </div>
 <br>
 This class is responsible for creating visualizations and descriptions of the key properties and metrics related to the Rashomon Set.

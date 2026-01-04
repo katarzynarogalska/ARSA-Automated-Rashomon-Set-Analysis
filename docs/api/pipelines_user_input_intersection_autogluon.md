@@ -3,7 +3,7 @@
 # BuildRashomonIntersectionAutogluon
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class rashomon_analysis.pipelines.pipelines_user_input.<strong>BuildRashomonIntersectionAutogluon</strong>(predictor, test_data, df_name, metrics, custom_weights, weighted_sum_method, delta, feature_imp_needed, converter_results_directory)
+class arsa_ml.pipelines.pipelines_user_input.<strong>BuildRashomonIntersectionAutogluon</strong>(predictor, test_data, df_name, metrics, custom_weights, weighted_sum_method, delta, feature_imp_needed, converter_results_directory)
 </div>
 </br>
 This i a subclass of a <code>Builder</code> abstract class, which provides pipeline for creating and exploring the Rashomon Intersection from user-provided models from AutoGluon framework.
