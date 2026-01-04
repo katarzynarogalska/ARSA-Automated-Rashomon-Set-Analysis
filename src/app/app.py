@@ -6,8 +6,8 @@ import plotly.io as pio
 from pathlib import Path
 import streamlit.components.v1 as components
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from rashomon_analysis.visualizers.rashomon_visualizer import *
-from rashomon_analysis import *
+from arsa_ml.visualizers.rashomon_visualizer import *
+from arsa_ml import *
 BASE_DIR = Path(__file__).resolve().parent.parent
 assets_dir = BASE_DIR / "style"
 

@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from rashomon_analysis.rashomon_set import *
+from arsa_ml.rashomon_set import *
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd

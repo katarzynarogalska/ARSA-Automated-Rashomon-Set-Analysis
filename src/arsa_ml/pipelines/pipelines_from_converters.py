@@ -9,12 +9,12 @@ import psutil
 from pathlib import Path
 import importlib.resources as pkg_resources
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from rashomon_analysis.rashomon_set import *
-from rashomon_analysis.rashomon_intersection import *
-from rashomon_analysis.visualizers.rashomon_visualizer import *
-from rashomon_analysis.visualizers.intersection_visualizer import *
+from arsa_ml.rashomon_set import *
+from arsa_ml.rashomon_intersection import *
+from arsa_ml.visualizers.rashomon_visualizer import *
+from arsa_ml.visualizers.intersection_visualizer import *
 from app.rashomon_binary_app import *
-from rashomon_analysis.pipelines.builder_abstract import *
+from arsa_ml.pipelines.builder_abstract import *
 import pickle
 import warnings
 import logging

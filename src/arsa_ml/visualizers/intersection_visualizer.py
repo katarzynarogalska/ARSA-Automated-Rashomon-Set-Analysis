@@ -1,12 +1,12 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from rashomon_analysis.rashomon_set import *
-from rashomon_analysis.rashomon_intersection import *
+from arsa_ml.rashomon_set import *
+from arsa_ml.rashomon_intersection import *
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pandas as pd
-from rashomon_analysis.visualizers.rashomon_visualizer import *
+from arsa_ml.visualizers.rashomon_visualizer import *
 
 plot_title_font = dict(
     color="#6B7F8A",

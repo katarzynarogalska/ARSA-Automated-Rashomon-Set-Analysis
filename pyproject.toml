@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "arsa_ml"
-version = "0.1.5"
+version = "0.1.6"
 description = "ARSA_ML is a package for automated analysis of the Rashomon Set properties."
 authors = ["Katarzyna Rogalska", "Zuzanna Sieńko"]
 readme = "README.md"
-packages = [{include = "rashomon_analysis", from = "src"},
+packages = [{include = "arsa_ml", from = "src"},
             {include = "app", from ="src"}]
 
 [tool.poetry.dependencies]
