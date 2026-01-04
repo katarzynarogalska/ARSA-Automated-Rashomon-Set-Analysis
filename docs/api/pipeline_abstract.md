@@ -3,7 +3,7 @@
 # Builder - abstract class
 
 <div style="background-color: #7ea1ee7a; padding: 10px; border-radius: 4px;">
-class arsa_ml.pipelines.builder_abstract<strong>Builder</strong>
+class arsa_ml.pipelines.builder_abstract.<strong>Builder</strong>
 </div>
 <br>
 This class is an abstract class asserting all pipeline classes have the same set of obligatory methods.
