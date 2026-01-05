@@ -2,7 +2,6 @@ import streamlit as st
 import pickle
 import sys
 from pathlib import Path
-import re
 import streamlit.components.v1 as components
 import plotly.graph_objects as go
 BASE_DIR = Path(__file__).parent
