@@ -955,6 +955,7 @@ class Visualizer:
                             font = plot_axis_font)
                 )
         else:
+            tickfont_combined = {**plot_axis_font, "size": 9}
             fig = px.imshow(
                 sample_predictions_df.set_index('Model')[labels],
                 labels=dict(x="Class", y="Model", color="Probability"),
