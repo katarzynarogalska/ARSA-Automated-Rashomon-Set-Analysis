@@ -691,6 +691,79 @@ class RashomonSet:
         #channel capacity = sum_x p(x) * p(y|x) * log (p(y|x)/p(y)) = sum_x p(x) * D_t(x)
         channel_capacity = np.sum(p_x * D_t) / np.log(2)
         return channel_capacity
+
+    def rashomon_capacity_threshold(self, sample_index : int, threshold = 0.5) -> float:
+        '''
+        Method for calculate the Rashomon Capacity for a given sample for a specified probability threshold.
+            Args: 
+                threshold : float
+                    Decision threshold to convert predicted probabilities into binary labels.
+                    If the proba probability for positive class >= threshold, then the sample is labeled as positive (1), else negative (0).
+                    Must be between 0 and 1 (inclusive).
+                sample_index : index of the sample for which Rashomon capacity is to be calculated
+
+            Returns:
+                float : Rashomon capacity value for the given sample.
+        '''
+        if self.task_type != 'binary':
+            raise ValueError("rashomon_capacity_threshold method is only applicable for binary classification tasks.")
+        if threshold<0 or threshold>1:
+            raise ValueError('threshold parameter must be in range [0,1].')
+        if sample_index < 0 or sample_index >= self.determine_number_of_samples():
+            raise ValueError(f"Sample index {sample_index} is out of bounds. Must be between 0 and {self.determine_number_of_samples() - 1}.")
+        
+        models = list(self.rashomon_proba_predictions.keys())
+        class_names = self.rashomon_proba_predictions[models[0]].columns
+        m, c = len(models), len(class_names)
+        transition_matrix = np.zeros((m, c))
+
+        for i, model in enumerate(models):
+            proba_df = self.rashomon_proba_predictions[model]
+            if sample_index not in proba_df.index:
+                raise ValueError(f"Sample index {sample_index} not found in proba_predictions for model '{model}'.")
+            if proba_df.loc[sample_index, "1"] >= threshold:
+                transition_matrix[i, class_names.get_loc("1")] = 1
+            else:
+                transition_matrix[i, class_names.get_loc("0")] = 1
+        
+        channel_capacity = self.blahut_arimoto_algorithm(transition_matrix)
+        rashomon_capacity = 2**channel_capacity
+        return rashomon_capacity
+    
+    def rashomon_capacity_labels(self, sample_index : int) -> float:
+        '''
+        Method for calculate the Rashomon Capacity for a given sample, but for label prediction not proba predictions.
+            Args:
+                sample_index : index of the sample for which Rashomon capacity is to be calculated
+
+            Returns:
+                float : Rashomon capacity value for the given sample.
+        '''
+        if sample_index < 0 or sample_index >= self.determine_number_of_samples():
+            raise ValueError(f"Sample index {sample_index} is out of bounds. Must be between 0 and {self.determine_number_of_samples() - 1}.")
+        
+        models = list(self.rashomon_predictions.keys())
+        all_classes = set()
+        for model in models:
+            all_classes.update(self.rashomon_predictions[model].values)
+        class_names = sorted(all_classes)
+
+        m, c = len(models), len(class_names)
+        transition_matrix = np.zeros((m, c))
+
+        for i, model in enumerate(models):
+            preds = self.rashomon_predictions[model]
+            if sample_index not in preds.index:
+                raise ValueError(f"Sample index {sample_index} not found in predictions for model '{model}'.")
+            
+            pred_class = preds.loc[sample_index]
+            class_idx = class_names.index(pred_class)
+            transition_matrix[i, class_idx] = 1
+        
+        channel_capacity = self.blahut_arimoto_algorithm(transition_matrix)
+        rashomon_capacity = 2**channel_capacity
+        return rashomon_capacity
+
     
     def cohens_kappa(self) -> dict:
         '''

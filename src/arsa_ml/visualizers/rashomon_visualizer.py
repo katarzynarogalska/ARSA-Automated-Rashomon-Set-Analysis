@@ -1185,6 +1185,162 @@ class Visualizer:
         """
 
         return fig, descr
+    
+    def rashomon_capacity_distribution_threshold(self, threshold : int = 0.5) -> Tuple[go.Figure, str]:
+        '''
+            Method for creating a plot representing distribution of Rashomon Capacity metric across all samples in dataset for given threshold. 
+
+            Args: 
+                threshold : float
+                    Decision threshold to convert predicted probabilities into binary labels.
+                    If the proba probability for positive class >= threshold, then the sample is labeled as positive (1), else negative (0).
+                    Must be between 0 and 1 (inclusive).
+
+            Returns:
+                Tuple[go.Figure, str]
+                - plot
+                - plot description
+        '''
+        if self.rashomon_set.task_type != 'binary':
+            raise ValueError("Cannot plot VPRs for task type other than binary")
+        
+        n_samples = self.rashomon_set.determine_number_of_samples()
+        n_classes = self.rashomon_set.determine_number_of_classes()  
+        capacity_values = [self.rashomon_set.rashomon_capacity_threshold(i, threshold=threshold) for i in range(n_samples)]
+        rounded_values = np.round(capacity_values, decimals=4)
+        n_unique = len(np.unique(rounded_values))
+        unique_values = sorted(np.unique(rounded_values))
+
+        if n_unique<=n_classes:
+            nbins = n_unique
+        else:
+            iqr = np.percentile(rounded_values, 75) - np.percentile(rounded_values, 25)
+            bin_width = 2 * iqr / (len(rounded_values) ** (1/3))
+            if bin_width > 0:
+                nbins = int(np.ceil((max(rounded_values) - min(rounded_values)) / bin_width))
+            else:
+                nbins = 10
+
+        fig = px.histogram(
+            x = rounded_values,
+            title=f"Distribution of Rashomon Capacity for threshold={threshold}",
+            labels={'x': 'Rashomon Capacity', 'y': 'Count'},
+            nbins = nbins,
+            color_discrete_sequence=[chart_colors_v2[6]]
+        )
+
+        fig.update_traces(
+         marker=dict(line=dict(color='#184B57', width=1))  
+        )
+
+        tickfont_combined = {**plot_axis_font, "size": 11}
+        fig.update_layout(
+            title=dict(text = f'Distribution of Rashomon Capacity for threshold={threshold}',
+                        font = plot_title_font),
+            xaxis=dict(title=dict(
+                            text="Capacity",
+                            font=plot_axis_font),
+                       tickfont = tickfont_combined),
+            yaxis=dict(title=dict(
+                            text="Count",
+                            font=plot_axis_font),
+                       tickfont = tickfont_combined,
+                       gridcolor = "#D3D3D3"),
+            height=400,
+            width=600,
+        )
+
+        if n_unique <= n_classes:
+            fig.update_xaxes(type='category', categoryorder='array', categoryarray=unique_values)
+
+
+        mean_value = round(np.mean(capacity_values),2)
+        std_value = round(np.std(capacity_values),2)
+        min_value = round(np.min(capacity_values),2)
+        max_value = round(np.max(capacity_values),2)
+
+        descr = f"""
+            The plot shows the distribution of Rashomon Capacity values computed for a prediction threshold={threshold} across all samples in dataset.
+            <br>
+            <strong>Rashomon Capacity summary</strong> — Mean: {mean_value:.2f}, Std: {std_value:.2f}, Min: {min_value:.2f}, Max: {max_value:.2f}.
+            </br>
+        """
+
+        return fig, descr
+    
+    def rashomon_capacity_distribution_labels(self) -> Tuple[go.Figure, str]:
+        '''
+            Method for creating a plot representing distribution of Rashomon Capacity metric across all samples in dataset, when Rashomon Capacity is computed for label predictions. 
+
+            Returns:
+                Tuple[go.Figure, str]
+                - plot
+                - plot description
+        '''
+        
+        n_samples = self.rashomon_set.determine_number_of_samples()
+        n_classes = self.rashomon_set.determine_number_of_classes()  
+        capacity_values = [self.rashomon_set.rashomon_capacity_labels(i) for i in range(n_samples)]
+        rounded_values = np.round(capacity_values, decimals=4)
+        n_unique = len(np.unique(rounded_values))
+        unique_values = sorted(np.unique(rounded_values))
+
+        if n_unique<=n_classes:
+            nbins = n_unique
+        else:
+            iqr = np.percentile(rounded_values, 75) - np.percentile(rounded_values, 25)
+            bin_width = 2 * iqr / (len(rounded_values) ** (1/3))
+            if bin_width > 0:
+                nbins = int(np.ceil((max(rounded_values) - min(rounded_values)) / bin_width))
+            else:
+                nbins = 10
+
+        fig = px.histogram(
+            x = rounded_values,
+            title=f"Distribution of Rashomon Capacity computed for labels predictions.",
+            labels={'x': 'Rashomon Capacity', 'y': 'Count'},
+            nbins = nbins,
+            color_discrete_sequence=[chart_colors_v2[6]]
+        )
+
+        fig.update_traces(
+         marker=dict(line=dict(color='#184B57', width=1))  
+        )
+
+        tickfont_combined = {**plot_axis_font, "size": 11}
+        fig.update_layout(
+            title=dict(text = f'Distribution of Rashomon Capacity computed for labels predictions.',
+                        font = plot_title_font),
+            xaxis=dict(title=dict(
+                            text="Capacity",
+                            font=plot_axis_font),
+                       tickfont = tickfont_combined),
+            yaxis=dict(title=dict(
+                            text="Count",
+                            font=plot_axis_font),
+                       tickfont = tickfont_combined,
+                       gridcolor = "#D3D3D3"),
+            height=400,
+            width=600,
+        )
+
+        if n_unique <= n_classes:
+            fig.update_xaxes(type='category', categoryorder='array', categoryarray=unique_values)
+
+        mean_value = round(np.mean(capacity_values),2)
+        std_value = round(np.std(capacity_values),2)
+        min_value = round(np.min(capacity_values),2)
+        max_value = round(np.max(capacity_values),2)
+
+        descr = f"""
+            The plot shows the distribution of Rashomon Capacity values computed for label predictions across all samples in dataset.
+            <br>
+            <strong>Rashomon Capacity summary</strong> — Mean: {mean_value:.2f}, Std: {std_value:.2f}, Min: {min_value:.2f}, Max: {max_value:.2f}.
+            </br>
+        """
+
+        return fig, descr
+
 
     
     def percent_agreement_barplot(self)->Tuple[go.Figure, str]:
