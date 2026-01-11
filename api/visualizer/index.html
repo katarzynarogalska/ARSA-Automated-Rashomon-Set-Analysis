@@ -590,6 +590,35 @@ Note : Method available only for binary classification task type.
 </br>
 </br></p>
 <div style="color: #3F51B5; font-size: 18px;">
+    <strong>rashomon_capacity_distribution_threshold(<code>threshold</code>)</strong>
+</div>
+<p>&emsp; Creates a visualization of the distribution of the <code>rashomon_capacity_threshold</code> metric calculated with threshold parameter. Returns the plot with its description.<br>
+</br>
+Note : Method available only for binary classification task type.
+</br>
+</br>
+&emsp; <strong>Parameters :</strong> </br>
+&emsp; <code>threshold</code> : float, by default 0.5. Decision threshold for binary classification. If the predicted probability of the positive class (1) is greater than this threshold, the sample is assigned a label 1 (positive); otherwise, it is assigned 0 (negative). This threshold is applied to all observations.<br>
+<br>
+&emsp; <strong>Returns :</strong> </br>
+&emsp; <code>histogram</code> : go.Figure
+</br>
+&emsp; <code>plot_descr</code> : str
+</br>
+</br></p>
+<div style="color: #3F51B5; font-size: 18px;">
+    <strong>rashomon_capacity_distribution_labels()</strong>
+</div>
+<p>&emsp; Visualizes the distribution of <code>rashomon_capacity_labels</code> values across all samples in the dataset. The histogram visualizes the frequency of different capacity values. Returns the plot with its description.
+</br>
+</br>
+&emsp; <strong>Returns :</strong> </br>
+&emsp; <code>histogram_plot</code> : go.Figure
+</br>
+&emsp; <code>plot_descr</code> : str
+</br>
+</br></p>
+<div style="color: #3F51B5; font-size: 18px;">
     <strong>percent_agreement_barplot()</strong>
 </div>
 <p>&emsp; Visualizes the distribution of <code>percent_agreements</code> for all models in the Rashomon Set. The x-axis represents the different models, while the y-axis shows the corresponding percent_agreements with the base model. The horizontal line indicates the mean value of the percent_agreement across all models (besides the base_model) from the Rashomon Set. Returns the plot with its description. 
