@@ -103,7 +103,8 @@ class IntersectionVisualizer(Visualizer):
                 'steps': [
                     {'range': [0, all_models_num], 'color': "#ebebeb"},
                 ],
-            }
+            },
+            domain={'x': [0, 1], 'y': [0, 1]}
         ))
 
         return fig, "The gauge plot represents how many models from the leaderboard were included in the Rashomon Intersection for the given parameters."
@@ -829,8 +830,10 @@ class IntersectionVisualizer(Visualizer):
         def add_text_list(x_center, y_center, items, position="left", max_display=15):
             if not items:
                 return
+            if len(self.rashomon_set.leaderboard)>12:
+                font_size = 9
             
-            if len(self.rashomon_set.leaderboard)>20:
+            elif len(self.rashomon_set.leaderboard)>20:
                 font_size = 7.5
             else:
                 font_size=12

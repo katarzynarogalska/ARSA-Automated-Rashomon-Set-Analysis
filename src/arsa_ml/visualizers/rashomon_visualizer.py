@@ -122,7 +122,8 @@ class Visualizer:
                 'steps': [
                     {'range': [0, all_models_num], 'color': "#ebebeb"},
                 ],
-            }
+            },
+            domain={'x': [0, 1], 'y': [0, 1]}
         ))
         
         return fig, "The gauge plot represents how many models from the leaderboard were included in the Rashomon Set for the given parameters."
