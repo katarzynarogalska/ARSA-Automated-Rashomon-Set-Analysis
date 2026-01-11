@@ -831,9 +831,6 @@ class IntersectionVisualizer(Visualizer):
             if not items:
                 return
             if len(self.rashomon_set.leaderboard)>12:
-                font_size = 9
-            
-            elif len(self.rashomon_set.leaderboard)>20:
                 font_size = 7.5
             else:
                 font_size=12
