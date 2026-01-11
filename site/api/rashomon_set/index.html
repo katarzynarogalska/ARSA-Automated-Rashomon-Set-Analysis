@@ -759,6 +759,48 @@ Channel capacity is defined as the maximum mutual information between the channe
 </br>
 </br></p>
 <div style="color: #3F51B5; font-size: 0.9rem;">
+    <strong>rashomon_capacity_threshold( <code>sample_index</code>,  <code>threshold</code>)</strong>
+</div>
+<p>&emsp; Method for calculating Rashomon Capacity for a given sample and specified threshold. The parameter <code>sample_index</code> should be an index of a sample the Rashomon Capacity is to be calculated. 
+The <code>threshold</code> specifies the probability cutoff; If the probability of positive class (1) is greater than threshold, then the sample is assigned a positive label (1), else (0). By default set to 0.5.
+The output value is a float in the range [1, c], where c is the number of classes in the classification task. </br>
+&emsp; If Rashomon Capacity equals 1, then all the models produced the same outputs for given sample, so there is no predictive multiplicity. <br>
+&emsp; If Rashomon Capacity equals c, that indicates that the models produce maximally diverse predictions for the given sample, resulting in highest predictive multiplicity. 
+<br>
+Note: this method is only available for binary classification tasks. <br>
+&emsp; Read more about Rashomon Capacity: <a href="https://arxiv.org/pdf/2206.01295" target="_blank">Rashomon Capacity: A Metric for Predictive Multiplicity in Classification (Definition 2)</a>.
+<br>
+<br>
+    &emsp; <strong>Parameters :</strong> </br>
+    <li><code>sample_index</code> : int</li>
+    <li><code>threshold</code> : float <br>
+     Decision threshold for binary classification. If the predicted probability of the positive class (1) is greater than this threshold,
+    the sample is assigned a label 1 (positive); otherwise, it is assigned 0 (negative).</li>
+    <br>
+    <br>
+    &emsp; <strong>Returns :</strong> </br>
+    &emsp; <code>rashomon_capacity</code> : float
+</br>
+<br></p>
+<div style="color: #3F51B5; font-size: 0.9rem;">
+    <strong>rashomon_capacity_labels( <code>sample_index</code> )</strong>
+</div>
+<p>&emsp; Method for calculating Rashomon Capacity for a given sample, calculated on predictions with labels instead of probabilistic predictions. The parameter <code>sample_index</code> should be an index of a sample the Rashomon Capacity is to be calculated. The output value is a float in the range [1, c], where c is the number of classes in the classification task. </br>
+&emsp; If Rashomon Capacity equals 1, then all the models produced the same outputs for given sample, so there is no predictive multiplicity. <br>
+&emsp; If Rashomon Capacity equals c, that indicates that the models produce maximally diverse predictions for the given sample, resulting in highest predictive multiplicity. 
+<br>
+&emsp; Read more about Rashomon Capacity: <a href="https://arxiv.org/pdf/2206.01295" target="_blank">Rashomon Capacity: A Metric for Predictive Multiplicity in Classification (Definition 2)</a>.
+<br>
+<br>
+    &emsp; <strong>Parameters :</strong> </br>
+    &emsp; <code>sample_index</code> : int
+    <br>
+    <br>
+    &emsp; <strong>Returns :</strong> </br>
+    &emsp; <code>rashomon_capacity</code> : float
+</br>
+<br></p>
+<div style="color: #3F51B5; font-size: 0.9rem;">
     <strong>cohens_kappa()</strong>
 </div>
 <p>&emsp; Method for calculating Cohen's Kappa metric for every model in the Rashomon Set relative to the base model.
