@@ -111,7 +111,7 @@ class Visualizer:
         rashomon_size = len(self.rashomon_set.rashomon_set)
         all_models_num = len(self.rashomon_set.leaderboard)
         fig = go.Figure(go.Indicator(
-            mode = "gauge+number",
+            mode = "number + gauge",
             value = rashomon_size,
             number = {'font': {'size': 40, 'color': '#6B7F8A'}},
             title =dict(text = 'Number of models in the Rashomon Set',
@@ -122,8 +122,7 @@ class Visualizer:
                 'steps': [
                     {'range': [0, all_models_num], 'color': "#ebebeb"},
                 ],
-            },
-            domain={'x': [0, 1], 'y': [0, 1]}
+            }
         ))
         
         return fig, "The gauge plot represents how many models from the leaderboard were included in the Rashomon Set for the given parameters."
