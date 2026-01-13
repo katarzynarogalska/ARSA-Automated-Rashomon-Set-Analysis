@@ -12,6 +12,10 @@ from sklearn.preprocessing import LabelEncoder
 import pickle
 from abc import ABC, abstractmethod
 from sklearn.model_selection import train_test_split
+import logging
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+YELLOW = "\033[93m"
+RESET = "\033[0m"
 BASE_DIR = Path(__file__).resolve().parents[2]
 RES_SAVING_DIR = BASE_DIR/"converter_results"
 
@@ -120,6 +124,20 @@ class PredictorConverter(Converter):
         '''
         leaderboard = self.predictor.leaderboard(self.test_data, extra_metrics=self.metrics)
         leaderboard = leaderboard.drop(columns= ['pred_time_test_marginal','pac','log_loss','mcc', 'quadratic_kappa','pred_time_val_marginal', 'fit_time_marginal', 'stack_level','can_infer', 'fit_order','score_val','score_test','pred_time_test','pred_time_val','fit_time'])
+        valid_models = []
+        for model_name in leaderboard['model'].tolist():
+            try:
+                self.predictor.predict(self.test_data.head(1), model=model_name)
+                valid_models.append(model_name)
+            except AttributeError as e:
+                msg = str(e)
+                if "'NoneType' object" in msg:
+                    logging.warning(f"{YELLOW}Skipping model {model_name}: model is empty or not loaded ({type(e).__name__}: {e}){RESET}")
+                else:
+                    raise
+            except Exception as e:
+                raise
+        leaderboard = leaderboard[leaderboard['model'].isin(valid_models)].reset_index(drop=True)
         return leaderboard
     
     def create_predictions_dict(self)-> dict:
