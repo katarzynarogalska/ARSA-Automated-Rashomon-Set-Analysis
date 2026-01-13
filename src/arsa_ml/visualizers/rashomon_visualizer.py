@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 from arsa_ml.rashomon_set import *
 import plotly.graph_objects as go
 import plotly.express as px
+from plotly.subplots import make_subplots
 import pandas as pd
 
 plot_title_font = dict(
@@ -110,7 +111,11 @@ class Visualizer:
         '''
         rashomon_size = len(self.rashomon_set.rashomon_set)
         all_models_num = len(self.rashomon_set.leaderboard)
-        fig = go.Figure(go.Indicator(
+        fig = make_subplots(
+            rows=1, cols=1,
+            specs=[[{"type": "indicator"}]]
+        )
+        fig.add_trace(go.Indicator(
             mode = "number + gauge",
             value = rashomon_size,
             number = {'font': {'size': 40, 'color': '#6B7F8A'}},
