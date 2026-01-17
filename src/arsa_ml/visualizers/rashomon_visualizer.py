@@ -1596,7 +1596,20 @@ class Visualizer:
             by = self.rashomon_set.base_metric,
             ascending=False
         ).reset_index(drop=True).round({self.rashomon_set.base_metric:3})
-        filtered_leaderboard.insert(0, "Nr", range(1, len(filtered_leaderboard)+1))
+       
+
+        base_row = filtered_leaderboard.loc[
+            filtered_leaderboard['model'] == self.rashomon_set.base_model
+        ]
+
+        rest_rows = filtered_leaderboard.loc[
+            filtered_leaderboard['model'] != self.rashomon_set.base_model
+        ]
+        final_leaderboard = (
+            pd.concat([base_row, rest_rows], ignore_index=True)
+        )
+
+        final_leaderboard.insert(0, "Nr", range(1, len(final_leaderboard)+1))
 
         base_model_score_rounded = filtered_leaderboard.loc[filtered_leaderboard['model'] == self.rashomon_set.base_model, self.rashomon_set.base_metric].iloc[0]
         #number of models with the same rounded score
@@ -1608,13 +1621,13 @@ class Visualizer:
         ].tolist()
         same_score_count = len(same_score_models)
 
-        styled_df = filtered_leaderboard.copy().astype(str)
+        styled_df = final_leaderboard.copy().astype(str)
         styled_df.iloc[0] = styled_df.iloc[0].apply(lambda x: f"<b>{x}</b>")
 
         fig = go.Figure(data = [go.Table(
             columnwidth = [28,200,70],
             header = dict(
-                values=list(filtered_leaderboard.columns),
+                values=list(final_leaderboard.columns),
                 font=dict(family="Inter, sans-serif", color='darkgray', size=13),
                 fill_color='white',
                 align='left'
