@@ -259,6 +259,33 @@ class RashomonSet:
         name = worst_score_row['model']
         return name
     
+    def find_worst_rashomon(self) -> Tuple[str, float]:
+        '''
+            Method for finding the name of the worst model (base_metric)
+            within the Rashomon Set.
+
+            Returns:
+                str : Name of the worst model in the Rashomon Set
+                float : Numerical Score of the base metric
+        '''
+
+        rashomon_models = self.get_rashomon_set()
+
+        rashomon_leaderboard = self.leaderboard[
+            self.leaderboard['model'].isin(rashomon_models)
+        ]
+
+        if self.METRICS_GREATER_IS_BETTER.get(self.base_metric):
+            worst_score_row = rashomon_leaderboard.loc[
+                rashomon_leaderboard[self.base_metric].idxmin()
+            ]
+        else:
+            worst_score_row = rashomon_leaderboard.loc[
+                rashomon_leaderboard[self.base_metric].idxmax()
+            ]
+
+        return worst_score_row['model'], worst_score_row[self.base_metric]
+    
     
     def find_same_score_as_base(self) -> Tuple[int, list]:
         '''
@@ -503,6 +530,26 @@ class RashomonSet:
         vpr_max = all_probabilities_matrix.max(axis=0)
         vprs = list(zip(vpr_min, vpr_max))
         return vprs
+    
+    def fraction_vpr_uncertain(self)-> float:
+        '''
+        Calculates the fraction of observations for which VPR includes probability 0.5 indicating high uncertainty.
+        '''
+        vprs = self.viable_prediction_range()
+        contains_half = [(vmin <= 0.5 <= vmax) for vmin, vmax in vprs]
+        fraction = sum(contains_half) / len(contains_half)
+
+        return fraction
+    def vpr_widths(self) -> list[float]:
+        """
+        Returns the widths of the Viable Prediction Ranges (VPR)
+        for all samples.
+        """
+        vprs = self.viable_prediction_range()
+
+        widths = [vmax - vmin for vmin, vmax in vprs]
+
+        return widths
     
     def agreement_rate(self)->list:
         '''
@@ -827,6 +874,43 @@ class RashomonSet:
                 kappa_matrix.loc[model_i, model_j], kappa_matrix.loc[model_j, model_i] = kappa, kappa
 
         return kappa_matrix
+    
+    from typing import Tuple, List
+
+    def most_important_features(self) -> Tuple[List[str], List[str]]:
+        """
+        Returns:
+            Tuple[List[str], List[str]]
+            - top 3 most important features of the base model
+            - features most frequently appearing at positions 1,2,3 across other models in the Rashomon Set
+        """
+
+        if self.rashomon_feature_importance is None:
+            return [], []
+
+        bm = self.base_model
+        fi = self.rashomon_feature_importance
+
+        # Top features base model
+        fi_bm = fi.get(bm) or []
+        fi_bm_top3 = fi_bm[:3] if fi_bm else None
+
+        position_counts = {0: {}, 1: {}, 2: {}}
+
+        for model, feature_list in fi.items():
+            # skip base
+            if model == bm or not feature_list:
+                continue
+
+            for i in range(min(3, len(feature_list))):
+                feature = feature_list[i]
+                position_counts[i][feature] = position_counts[i].get(feature, 0) + 1
+
+        most_common = [
+            max(position_counts[i], key=position_counts[i].get) if position_counts[i] else None
+            for i in range(3)
+        ]
+        return fi_bm_top3, most_common
 
 
     def get_rashomon_metrics(self, delta: float = 0.1) -> Dict[str, float]:
@@ -841,10 +925,20 @@ class RashomonSet:
         '''
 
         capacity_values = [self.rashomon_capacity(i) for i in range(self.determine_number_of_samples())]
+        percent_agreements = list(self.percent_agreement().values())
 
         metrics = {
+            'Base Metric': self.base_metric,
+            'Epsilon': self.epsilon,
+            'Best Score': self.best_score,
+            'Worst Score All' : self.worst_score,
+            'Worst Score Rashomon' : self.find_worst_rashomon()[1],
+            'Worst Model Rashomon' : self.find_worst_rashomon()[0],
             'Base Model': self.base_model,
             'Rashomon Set Size': len(self.rashomon_set),
+            'Rashomon Set Models': self.get_rashomon_set().tolist(),
+            'Num models same as Base' : self.find_same_score_as_base()[0],
+            'Models same as Base' :  self.find_same_score_as_base()[1],
             'Task Type': self.determine_task_type(),
             'Number of classes': self.determine_number_of_classes(),
             'Rashomon Ratio': self.rashomon_ratio(),
@@ -853,13 +947,24 @@ class RashomonSet:
             'Discrepancy': self.binary_discrepancy() if self.determine_task_type() == 'binary' else self.multiclass_discrepancy(),
             'Probabilistic Ambiguity': self.probabilistic_abiguity(delta) if self.determine_task_type() == 'binary' else None,
             'Probabilistic Discrepancy': self.probabilistic_discrepancy(delta) if self.determine_task_type() == 'binary' else None,
-            'VPRs' : self.viable_prediction_range() if self.determine_task_type() =='binary' else None,
-            'Agreement rates list': self.agreement_rate(),
-            'Percent agreement dict': self.percent_agreement(),
+            'Mean VPR widths' : np.mean(self.vpr_widths()) if self.determine_task_type() =='binary' else None,
+            'Min VPR width' : np.min(self.vpr_widths()) if self.determine_task_type() =='binary' else None,
+            'Max VPR width': np.max(self.vpr_widths()) if self.determine_task_type() =='binary' else None,
+            'Std VPR width' : np.std(self.vpr_widths()) if self.determine_task_type() =='binary' else None,
+            'Fraction VPR with 0.5' : self.fraction_vpr_uncertain() if self.determine_task_type() =='binary' else None,
+            'Mean Agreement Rate' : np.mean(self.agreement_rate()),
+            'Min Agreement Rate' : np.min(self.agreement_rate()),
+            'Max Agreement Rate' : np.max(self.agreement_rate()),
+            'Std Agreement Rate' : np.std(self.agreement_rate()),
+            'Mean Percent Agreement' : np.mean(percent_agreements),
+            'Min Percent Agreement' : np.min(percent_agreements),
+            'Std Percent Agreement' : np.std(percent_agreements),
             'Mean Rashomon Capacity': np.mean(capacity_values),
             'Min Rashomon Capacity': np.min(capacity_values),
             'Max Rashomon Capacity': np.max(capacity_values),
-            'Std Rashomon Capacity': np.std(capacity_values)
+            'Std Rashomon Capacity': np.std(capacity_values),
+            'Top 3 Features Base' : self.most_important_features()[0],
+            'Top 3 Features Rashomon' : self.most_important_features()[1]
         }
         return metrics
         
