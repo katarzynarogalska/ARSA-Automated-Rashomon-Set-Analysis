@@ -926,6 +926,7 @@ class RashomonSet:
 
         capacity_values = [self.rashomon_capacity(i) for i in range(self.determine_number_of_samples())]
         percent_agreements = list(self.percent_agreement().values())
+        kappas = list(self.cohens_kappa().values())
 
         metrics = {
             'Base Metric': self.base_metric,
@@ -958,13 +959,17 @@ class RashomonSet:
             'Std Agreement Rate' : np.std(self.agreement_rate()),
             'Mean Percent Agreement' : np.mean(percent_agreements),
             'Min Percent Agreement' : np.min(percent_agreements),
+            'Max Percent Agreement' : np.max(percent_agreements),
             'Std Percent Agreement' : np.std(percent_agreements),
+            'Mean Cohens Kappa': np.mean(kappas),
+            'Min Cohens Kappa' : np.min(kappas),
+            'Max Cohens Kappa' : np.max(kappas),
+            'Std Cohens Kappa' : np.std(kappas),
             'Mean Rashomon Capacity': np.mean(capacity_values),
             'Min Rashomon Capacity': np.min(capacity_values),
             'Max Rashomon Capacity': np.max(capacity_values),
             'Std Rashomon Capacity': np.std(capacity_values),
-            'Top 3 Features Base' : self.most_important_features()[0],
-            'Top 3 Features Rashomon' : self.most_important_features()[1]
+            'Features dict' : self.rashomon_feature_importance
         }
         return metrics
         
